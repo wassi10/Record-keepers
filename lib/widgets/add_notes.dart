@@ -29,6 +29,7 @@ class _AddNotesState extends State<AddNotes> {
 
        child: Container(
 
+
          child: Column(
        
            children: [
@@ -40,6 +41,7 @@ class _AddNotesState extends State<AddNotes> {
 
              SizedBox(height: 23,),
 
+             //title textformfield
              TextFormField(
                decoration: InputDecoration.collapsed(hintText:" Tittle",),
                style: TextStyle(
@@ -51,6 +53,8 @@ class _AddNotesState extends State<AddNotes> {
                  title = _val;
                },
              ),
+
+             //description textformfield
              TextFormField(
                decoration: InputDecoration.collapsed(hintText:"Note Description",),
                style: TextStyle(
