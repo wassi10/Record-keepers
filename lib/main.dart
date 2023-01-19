@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false, // for default banner remove
 
       theme: ThemeData(fontFamily: 'Poppins'),
-      home: HomeScreen(),
-        //SplashScreen(),
+      home: //HomeScreen(),
+        SplashScreen(),
 
     );
   }
