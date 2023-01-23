@@ -13,7 +13,7 @@ class Buttons extends StatelessWidget {
 
       alignment: Alignment.center,
 
-      height: MediaQuery.of(context).size.height*0.08,
+      height: MediaQuery.of(context).size.height*0.06,
       width: double.infinity,
 
       //button decoration

@@ -1,4 +1,6 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_new/theme.dart';
@@ -39,33 +41,50 @@ class _AddNotesState extends State<AddNotes> {
 
            children: [
 
-             SizedBox(height: 23,),
+             SizedBox(height: 20,),
+
+
+             Container(
+               height: MediaQuery.of(context).size.height * 0.1,
+               padding: EdgeInsets.only(top: 0),
 
              //title textformfield
-             TextFormField(
-               decoration: InputDecoration.collapsed(hintText:" Tittle",),
+             child: TextFormField(
+               decoration: InputDecoration.collapsed(hintText:"Tittle",),
                style: TextStyle(
                  fontSize: 24.0, fontFamily: 'poppins', fontWeight: FontWeight.bold,
                ),
-               
+
                onChanged: (_val){
-                 
+
                  title = _val;
                },
+               maxLines: 20,
+             ),
              ),
 
-             //description textformfield
-             TextFormField(
-               decoration: InputDecoration.collapsed(hintText:"Note Description",),
-               style: TextStyle(
-                 fontSize: 20.0, fontFamily: 'poppins',
+
+
+
+             Container(
+               height: MediaQuery.of(context).size.height * 0.80,
+               padding: EdgeInsets.only(top: 0),
+
+               //description textformfield
+               child: TextFormField(
+                 decoration: InputDecoration.collapsed(hintText:"Note Description",),
+                 style: TextStyle(
+                   fontSize: 18.0, fontFamily: 'poppins',
+                 ),
+
+                 onChanged: (_val){
+
+                   description  = _val;
+                 },
+                 maxLines: 25,
                ),
-
-               onChanged: (_val){
-
-                 description  = _val;
-               },
              ),
+
 
            ],
          ),
@@ -79,14 +98,26 @@ class _AddNotesState extends State<AddNotes> {
 
 
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: (){
-
-        },
+        onPressed: add,
 
         label: Icon(Icons.save_rounded),
         backgroundColor: primaryColor,
       ),
 
     );
+
+  }
+  void add() async{
+    //save to firestore
+    CollectionReference ref = FirebaseFirestore.instance.collection('notes').doc(FirebaseAuth.instance.currentUser?.uid).collection('Notes');
+
+    var data = {
+      'tittle' : title,
+      'description' : description,
+      'created' : DateTime.now(),
+    };
+    ref.add(data);
+
+    Navigator.pop(context);
   }
 }

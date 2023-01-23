@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_new/screens/home_screen.dart';
 import 'package:flutter_new/screens/splash_screen.dart';
+import 'package:flutter_new/widgets/user.dart';
 
 void main() async{
 
@@ -20,8 +21,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false, // for default banner remove
 
       theme: ThemeData(fontFamily: 'Poppins'),
-      home: //HomeScreen(),
-        SplashScreen(),
+      home: MainPage(),
+      //HomeScreen(),
+        //SplashScreen(),
 
     );
   }

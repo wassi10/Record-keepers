@@ -3,8 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_new/screens/login.dart';
 import 'package:flutter_new/theme.dart';
-
 import '../widgets/notes.dart';
+
+import 'dart:async';
 import '../widgets/profile_page.dart';
 
 
@@ -20,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     //for sign out
   final user = FirebaseAuth.instance.currentUser!;
+
 
 @override
   Widget build(BuildContext context) {
@@ -73,29 +75,26 @@ class _HomeScreenState extends State<HomeScreen> {
             //   },
             // ),
 
+            SizedBox(
+              height: 100,
+            ),
 
-            // MaterialButton(
-            //     onPressed: (){
-            //       FirebaseAuth.instance.signOut();
-            //     },
-            //   color: Colors.blue,
-            //   child: Text('Sign out'),
-            //
-            // ),
+            MaterialButton(
+                onPressed: (){
+                  FirebaseAuth.instance.signOut();
+                },
+              // color: Colors.blue,
+              // child: Text('Sign out'),
 
-
-
-              // ListTile(
-              //
-              //   leading: Icon(Icons.arrow_back),
-              //   title: Text('Log Out',
-              //     style: TextStyle(
-              //       fontSize: 18, color: primaryColor,
-              //     ),
-              //   ),
-              //
-              // ),
-
+              child: ListTile(
+                leading: Icon(Icons.arrow_back),
+                title: Text('Log Out',
+                  style: TextStyle(
+                    fontSize: 18, color: primaryColor,
+                  ),
+                ),
+              ),
+            ),
 
           ],
 
@@ -170,6 +169,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
           ),
 
+
+          // for notes
           Card(
             color: Colors.white70,
             margin: EdgeInsets.all(8),
