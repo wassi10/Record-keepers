@@ -79,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 100,
             ),
 
+            //logout
             MaterialButton(
                 onPressed: (){
                   FirebaseAuth.instance.signOut();
