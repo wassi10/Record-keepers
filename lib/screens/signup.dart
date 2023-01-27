@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_new/theme.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import '../widgets/buttons.dart';
 import 'login.dart';
 
@@ -148,14 +149,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
               children: [
                 //for google logo
 
-                LogoButtons(
+
+
+               LogoButtons(
                   iconImage: Image(
                     height: 30,
                     width: 30,
                     image: AssetImage('assets/google.png'),
                   ),
                   textButtton: ' Google',
-                ),
+
+                  ),
+
+
+
               ],
             ),
 
@@ -192,11 +199,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 });
               }, icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility, color: primaryColor,),
             ): null
-
         ),
+
       ),
     );
   }
+
+  //firebaseAuth using google
+  // void signInWithGoogle()async {
+  //   GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  //   GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+  //   AuthCredential credential = GoogleAuthProvider.credential(
+  //     accessToken: googleAuth?.accessToken,
+  //     idToken: googleAuth?.idToken
+  //   );
+  //  UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+  //  print(userCredential.user?.displayName);
+  // }
 }
 
 
@@ -214,7 +233,7 @@ class LogoButtons extends StatelessWidget {
 
     return Container(
       height: mediaQuery.height*0.07,
-      width: mediaQuery.width * 0.30,
+      width: mediaQuery.width * 0.40,
 
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -222,7 +241,7 @@ class LogoButtons extends StatelessWidget {
       ),
 
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center, // facebook google logo center e ashar jonno
+        mainAxisAlignment: MainAxisAlignment.center, // google logo center e ashar jonno
         children: [
           iconImage,
           SizedBox(height: 5,),

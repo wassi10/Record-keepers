@@ -57,9 +57,6 @@ class _LogInScreenState extends State<LogInScreen> {
               buildInputForm('Enter Password', true, _passswordTextController),
 
 
-              // LogInForm(
-              //
-              // ),
 
               SizedBox(
                 height: 15,

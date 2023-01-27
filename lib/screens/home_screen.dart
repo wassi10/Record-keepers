@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_new/pages/survey_sreen.dart';
 import 'package:flutter_new/screens/login.dart';
 import 'package:flutter_new/theme.dart';
 import '../widgets/notes.dart';
@@ -29,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       appBar: AppBar(
         title: Text('Home page', style: TextStyle(color: whiteColor), ),
-        elevation: 30,
+        elevation: 0,
         backgroundColor: primaryColor,
       ),
 
@@ -61,20 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
 
-
-            // ListTile(
-            //   leading: Icon(Icons.edit_note),
-            //   title: Text('Profile',
-            //   style: TextStyle(
-            //     fontSize: 20, color: primaryColor,
-            //   ),
-            // ),
-            //
-            //   onTap: (){
-            //     Navigator.push(context, MaterialPageRoute(builder:  (context) => ProfileScreen(),),);
-            //   },
-            // ),
-
             SizedBox(
               height: 100,
             ),
@@ -84,9 +71,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: (){
                   FirebaseAuth.instance.signOut();
                 },
-              // color: Colors.blue,
-              // child: Text('Sign out'),
-
               child: ListTile(
                 leading: Icon(Icons.arrow_back),
                 title: Text('Log Out',
@@ -117,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: EdgeInsets.all(8),
             child: GestureDetector(
               onTap: (){
-                //Navigator.push(context, MaterialPageRoute(builder:  (context) => ProfileScreen(),),);
+                Navigator.push(context, MaterialPageRoute(builder:  (context) => SurveyScreen(),),);
 
               },
               child: Center(
@@ -147,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: EdgeInsets.all(8),
             child: GestureDetector(
               onTap: (){
-                //Navigator.push(context, MaterialPageRoute(builder:  (context) => ProfileScreen(),),);
+                Navigator.push(context, MaterialPageRoute(builder:  (context) => ProfileScreen(),),);
 
               },
               child: Center(

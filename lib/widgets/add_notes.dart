@@ -109,7 +109,7 @@ class _AddNotesState extends State<AddNotes> {
   }
   void add() async{
     //save to firestore
-    CollectionReference ref = FirebaseFirestore.instance.collection('notes').doc(FirebaseAuth.instance.currentUser?.uid).collection('Notes');
+    CollectionReference ref = FirebaseFirestore.instance.collection('notes').doc(FirebaseAuth.instance.currentUser?.uid).collection('notess');
 
     var data = {
       'tittle' : title,

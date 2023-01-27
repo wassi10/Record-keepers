@@ -75,7 +75,7 @@ class _NotesState extends State<Notes> {
           }else{
 
             return Center(
-              // child: Text("Loading..."),
+              child: Text("Notes"),
             );
           }
        },),
