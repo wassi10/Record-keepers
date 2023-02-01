@@ -72,7 +72,7 @@ class _AddNotesState extends State<AddNotes> {
 
                //description textformfield
                child: TextFormField(
-                 decoration: InputDecoration.collapsed(hintText:"Note Description",),
+                 decoration: InputDecoration.collapsed(hintText:"Description",),
                  style: TextStyle(
                    fontSize: 18.0, fontFamily: 'poppins',
                  ),
