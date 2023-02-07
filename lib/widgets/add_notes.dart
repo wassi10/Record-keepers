@@ -63,25 +63,24 @@ class _AddNotesState extends State<AddNotes> {
              ),
              ),
 
-
-
-
              Container(
-               height: MediaQuery.of(context).size.height * 0.80,
+               height: MediaQuery.of(context).size.height,
                padding: EdgeInsets.only(top: 0),
 
                //description textformfield
-               child: TextFormField(
-                 decoration: InputDecoration.collapsed(hintText:"Description",),
-                 style: TextStyle(
-                   fontSize: 18.0, fontFamily: 'poppins',
+               child: SingleChildScrollView(
+                 child: TextFormField(
+                   decoration: InputDecoration.collapsed(hintText:"Description",),
+                   style: TextStyle(
+                     fontSize: 18.0, fontFamily: 'poppins',
+                   ),
+               
+                   onChanged: (_val){
+               
+                     description  = _val;
+                   },
+                   maxLines: 25,
                  ),
-
-                 onChanged: (_val){
-
-                   description  = _val;
-                 },
-                 maxLines: 25,
                ),
              ),
 
@@ -110,14 +109,12 @@ class _AddNotesState extends State<AddNotes> {
   void add() async{
     //save to firestore
     CollectionReference ref = FirebaseFirestore.instance.collection('notes').doc(FirebaseAuth.instance.currentUser?.uid).collection('notess');
-
     var data = {
       'tittle' : title,
       'description' : description,
       'created' : DateTime.now(),
     };
     ref.add(data);
-
     Navigator.pop(context);
   }
 }
