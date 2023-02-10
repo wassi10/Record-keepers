@@ -71,11 +71,10 @@ class _AddNotesState extends State<AddNotes> {
                           child: TextFormField(
                             decoration: InputDecoration.collapsed(hintText:"Description",),
                             style: TextStyle(
-                              fontSize: 18.0, fontFamily: 'poppins',
+                              fontSize: 20.0, fontFamily: 'poppins',fontWeight: FontWeight.w400
                             ),
 
                             onChanged: (_val){
-
                               description  = _val;
                             },
                             maxLines: 25,

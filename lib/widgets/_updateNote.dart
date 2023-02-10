@@ -107,7 +107,7 @@ class _UpdateNotesState extends State<UpdateNotes> {
         .collection('notess');
     await ref
         .doc(dataID)
-        .update({"tittle": titt, "discription": diss});
+        .update({"tittle": titt, "description": diss});
     tittle.text = '';
     discription.text = '';
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

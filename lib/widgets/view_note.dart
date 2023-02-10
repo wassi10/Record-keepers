@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+
 import '../theme.dart';
 import '_updateNote.dart';
 
@@ -37,18 +38,18 @@ class _viewNoteState extends State<viewNote> {
             ),
             child: PopupMenuButton<int>(
                 onSelected: (value) => Onselected(context, value),
-                icon: const Icon(Icons.more_vert, color: Colors.white),
+                icon: Icon(Icons.more_vert, color: Colors.white),
                 itemBuilder: ((context) => [
                   PopupMenuItem<int>(
                     value: 0,
                     child: Row(
-                      children: const [
+                      children: [
                         Icon(
                           Icons.edit,
                           color: Colors.black,
                         ),
                         Padding(
-                          padding: EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.all(18.0),
                           child: Text("Edit",
                               style: TextStyle(
                                 // color: Colors.white,
@@ -59,13 +60,13 @@ class _viewNoteState extends State<viewNote> {
                   ),
                   PopupMenuItem<int>(
                     value: 1,
-                    child: Row(children: const [
+                    child: Row(children: [
                       Icon(
                         Icons.delete,
                         color: Colors.black,
                       ),
                       Padding(
-                        padding: EdgeInsets.all(15.0),
+                        padding: const EdgeInsets.all(15.0),
                         child: Text(
                           "Delete",
                           style: TextStyle(
@@ -82,21 +83,21 @@ class _viewNoteState extends State<viewNote> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(
-              height: 40,
+            SizedBox(
+              height: 30,
             ),
             Container(
               alignment: Alignment.topCenter,
               child: Text(
                 widget.tit,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 24.0,
                   fontFamily: 'poppins',
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 10,
             ),
             Padding(
@@ -106,8 +107,8 @@ class _viewNoteState extends State<viewNote> {
                 child: Text(
                   widget.des,
                   textAlign: TextAlign.justify,
-                  style: const TextStyle(
-                    fontSize: 18.0,
+                  style: TextStyle(
+                    fontSize: 20.0,
                     fontFamily: 'poppins',
                   ),
                 ),
@@ -131,7 +132,6 @@ class _viewNoteState extends State<viewNote> {
     ));
     Navigator.pop(context);
   }
-
 
 
   void Onselected(BuildContext context, int item) {

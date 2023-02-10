@@ -96,8 +96,6 @@ class _NotesState extends State<Notes> {
                             ),
 
 
-
-
                             //dynamic up = new viewNote();
                             // up._update(data);
                           ));
@@ -137,7 +135,7 @@ class _NotesState extends State<Notes> {
                 });
           }else {
             return Center(
-              child: Text("You didn't created Notes!"),
+              child: Text("Add Notes"),
             );
           }
         },
