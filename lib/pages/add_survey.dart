@@ -37,19 +37,19 @@ class _CreateASurveyState extends State<CreateASurvey> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 30,),
 
-                Text('The Number of Participants',
+                const Text('The Number of Participants',
                     style: TextStyle(fontSize: 18, fontFamily: 'poppins',
                         fontWeight: FontWeight.w600, color: blackColor)),
 
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
 
                 TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.all(10),
                   ),
@@ -58,20 +58,20 @@ class _CreateASurveyState extends State<CreateASurvey> {
                   },
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
 
-                Text('Title',
+                const Text('Title',
                     style: TextStyle(fontSize: 18, fontFamily: 'poppins',
                         fontWeight: FontWeight.w600, color: blackColor)),
 
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
 
                 TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Title',
                     contentPadding: EdgeInsets.all(10),
@@ -81,15 +81,15 @@ class _CreateASurveyState extends State<CreateASurvey> {
                   },
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
 
-                Text('Details',
+                const Text('Details',
                     style: TextStyle(fontSize: 18, fontFamily: 'poppins',
                         fontWeight: FontWeight.w600, color: blackColor)),
 
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
 
@@ -98,11 +98,11 @@ class _CreateASurveyState extends State<CreateASurvey> {
                       .of(context)
                       .size
                       .height * 0.30,
-                  padding: EdgeInsets.only(top: 0),
+                  padding: const EdgeInsets.only(top: 0),
 
                   //description textformfield
                   child: TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Type Details',
                     ),
@@ -130,7 +130,7 @@ class _CreateASurveyState extends State<CreateASurvey> {
             Navigator.push(context, MaterialPageRoute(builder:  (context) => SurveyDuration(),),);
           },
 
-          label: Icon(Icons.save_rounded),
+          label:  const Text("Next", style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),),
           backgroundColor: primaryColor,
         ),
 

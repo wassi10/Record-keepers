@@ -29,7 +29,7 @@ class _SurveyDurationState extends State<SurveyDuration> {
     return Scaffold(
 
       appBar: AppBar(
-        title: Text('Survey Duration', style: TextStyle(color: whiteColor), ),
+        title: const Text('Survey Duration', style: TextStyle(color: whiteColor), ),
         elevation: 0,
         backgroundColor: primaryColor,
       ),
@@ -43,25 +43,25 @@ class _SurveyDurationState extends State<SurveyDuration> {
 
             children:[
 
-              SizedBox(
+              const SizedBox(
                 height: 25,),
 
               //survey Duration
-              Text('Survey Duration',
+              const Text('Survey Duration',
                   style: TextStyle(fontSize: 22,fontFamily: 'poppins',
                       fontWeight: FontWeight.w600, color: blackColor)
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
 
-              Text('Start',
+              const Text('Start',
                   style: TextStyle(fontSize: 18,fontFamily: 'poppins',
                       fontWeight: FontWeight.w400, color: secondaryColor)
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
 
@@ -87,7 +87,7 @@ class _SurveyDurationState extends State<SurveyDuration> {
                       },
 
 
-                      child: Text('Select Date', style: TextStyle(fontSize: 20,fontFamily: 'poppins', color: whiteColor),
+                      child: const Text('Select Date', style: TextStyle(fontSize: 20,fontFamily: 'poppins', color: whiteColor),
                       ),
                   ),
 
@@ -100,16 +100,16 @@ class _SurveyDurationState extends State<SurveyDuration> {
               ),
 
 
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
 
-              Text('End',
+              const Text('End',
                   style: TextStyle(fontSize: 18,fontFamily: 'poppins',
                       fontWeight: FontWeight.w400, color: secondaryColor)
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
 
@@ -134,7 +134,7 @@ class _SurveyDurationState extends State<SurveyDuration> {
                       }
                     },
 
-                    child: Text('Select Date', style: TextStyle(fontSize: 20,fontFamily: 'poppins', color: whiteColor),
+                    child: const Text('Select Date', style: TextStyle(fontSize: 20,fontFamily: 'poppins', color: whiteColor),
                     ),
                   ),
 
@@ -146,21 +146,20 @@ class _SurveyDurationState extends State<SurveyDuration> {
                 ],
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: 55,
               ),
 
-              Text('Select a Category',
+              const Text('Select a Category',
                   style: TextStyle(fontSize: 18,fontFamily: 'poppins',
                       fontWeight: FontWeight.w600, color: blackColor)
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
 
               Card(
-
                 color: Colors.white54,
 
                 child: DropdownButtonFormField(
@@ -171,7 +170,7 @@ class _SurveyDurationState extends State<SurveyDuration> {
                   ),
 
                   value: chooseCategory,
-                  items: [
+                  items: const [
                     DropdownMenuItem(
                       child: Text("  Select Category"), value: "-1",),
                     DropdownMenuItem(
@@ -196,8 +195,7 @@ class _SurveyDurationState extends State<SurveyDuration> {
                   onChanged: (v){},
 
                 ),
-
-              ),
+                ),
 
             ],
           ),
@@ -205,12 +203,12 @@ class _SurveyDurationState extends State<SurveyDuration> {
 
       ),
 
+      //next button
       floatingActionButton: FloatingActionButton.extended(
         onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder:  (context) => CreateSurveyQuestion(),),);
+          Navigator.push(context, MaterialPageRoute(builder:  (context) => const CreateSurveyQuestion(),),);
         },
-
-        label: Icon(Icons.save_rounded),
+        label: const Text("Next", style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),),
         backgroundColor: primaryColor,
       ),
 

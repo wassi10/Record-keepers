@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
 
       appBar: AppBar(
-        title: Text('Home page', style: TextStyle(color: whiteColor), ),
+        title: const Text('Home page', style: TextStyle(color: whiteColor), ),
         elevation: 0,
         backgroundColor: primaryColor,
       ),
@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(
                       width: 100,
                       height: 100,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle
                       ),
 
@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
 
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
 
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: (){
                   FirebaseAuth.instance.signOut();
                 },
-              child: ListTile(
+              child: const ListTile(
                 leading: Icon(Icons.arrow_back),
                 title: Text('Log Out',
                   style: TextStyle(
@@ -89,16 +89,17 @@ class _HomeScreenState extends State<HomeScreen> {
       
       body: GridView.count(
 
-        padding: EdgeInsets.all(30),
+        padding: const EdgeInsets.all(30),
           crossAxisCount: 2,
 
         children: <Widget>[
 
 
+
           //Create Survey
           Card(
             color: Colors.white70,
-            margin: EdgeInsets.all(8),
+            margin: const EdgeInsets.all(8),
             child: GestureDetector(
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder:  (context) => SurveyScreen(),),);
@@ -108,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
 
                   mainAxisSize: MainAxisSize.min,
-                  children: [
+                  children: const [
                     Image(
                       height: 80,
                     width: 80,
@@ -128,16 +129,16 @@ class _HomeScreenState extends State<HomeScreen> {
         // participate Survey card
           Card(
             color: Colors.white70,
-            margin: EdgeInsets.all(8),
+            margin: const EdgeInsets.all(8),
             child: GestureDetector(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder:  (context) => ProfileScreen(),),);
+                Navigator.push(context, MaterialPageRoute(builder:  (context) => const ProfileScreen(),),);
 
               },
               child: Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: [
+                  children: const [
                     Image(
                       height: 80,
                       width: 80,
@@ -158,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // for notes
           Card(
             color: Colors.white70,
-            margin: EdgeInsets.all(8),
+            margin: const EdgeInsets.all(8),
             child: GestureDetector(
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder:  (context) => Notes(),),);
@@ -167,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: [
+                  children: const [
                     Image(
                       height: 80,
                       width: 80,
@@ -184,11 +185,38 @@ class _HomeScreenState extends State<HomeScreen> {
 
           ),
 
+          //wallets
+          Card(
+            color: Colors.white70,
+            margin: const EdgeInsets.all(8),
+            child: GestureDetector(
+              onTap: (){
+                // Navigator.push(context, MaterialPageRoute(builder:  (context) => Notes(),),);
+              },
 
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    Image(
+                      height: 80,
+                      width: 80,
+                      image: AssetImage('assets/wallet.png'),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text('LeaderBoard', style: TextStyle(fontSize: 15),),
+                  ],
+                ),
+              ),
+            ),
 
+          ),
 
         ],
       ),
+
     );
   }
 }
