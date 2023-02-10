@@ -14,11 +14,12 @@ class _WalletState extends State<Wallet> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      // appBar: AppBar(
-      //   title: const Text('Wallet', style: TextStyle(color: whiteColor), ),
-      //   elevation: 0,
-      //   backgroundColor: primaryColor,
-      // ),
+      appBar: AppBar(
+        title: const Text('Wallet', style: TextStyle(color: whiteColor), ),
+        elevation: 0,
+        backgroundColor: primaryColor,
+        automaticallyImplyLeading: false, // this is for remove the back button
+      ),
 
       body: Center(
         child: Column(

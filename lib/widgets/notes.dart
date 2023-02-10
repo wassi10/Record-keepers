@@ -35,6 +35,16 @@ class _NotesState extends State<Notes> {
   Widget build(BuildContext context) {
     return Scaffold(
 
+      appBar: AppBar(
+        title: Text(
+          'Notes',
+          style: TextStyle(color: whiteColor),
+        ),
+        elevation: 0,
+        backgroundColor: primaryColor,
+        automaticallyImplyLeading: false, // this is for remove the back button
+      ),
+
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(

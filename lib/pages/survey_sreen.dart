@@ -25,6 +25,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
         backgroundColor: primaryColor,
         title: Text('Create a survey', style: TextStyle(color: whiteColor), ),
 
+        automaticallyImplyLeading: false, // this is for remove the back button
         actions: <Widget>[
           IconButton(
               onPressed: (){},
@@ -41,7 +42,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 50,
+              height: 100,
             ),
 
 

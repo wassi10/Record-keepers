@@ -14,11 +14,16 @@ class _ParticipateScreenState extends State<ParticipateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-
+      appBar: AppBar(
+        title: const Text('Home', style: TextStyle(color: whiteColor), ),
+        elevation: 0,
+        backgroundColor: primaryColor,
+        automaticallyImplyLeading: false, // this is for remove the back button
+      ),
 
       body: Center(
         child: Column(
-          children: [
+          children: const [
             SizedBox(height: 200,),
             Text("participate screen"),
           ],

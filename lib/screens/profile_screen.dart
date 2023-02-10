@@ -15,11 +15,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      // appBar: AppBar(
-      //   title: const Text('Profile', style: TextStyle(color: whiteColor), ),
-      //   elevation: 0,
-      //   backgroundColor: primaryColor,
-      // ),
+      appBar: AppBar(
+        title: const Text('Profile', style: TextStyle(color: whiteColor), ),
+        elevation: 0,
+        backgroundColor: primaryColor,
+        automaticallyImplyLeading: false, // this is for remove the back button
+      ),
 
       body: SingleChildScrollView(
         child: Column(
