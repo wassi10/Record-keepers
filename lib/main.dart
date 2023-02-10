@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_new/screens/home_screen.dart';
-import 'package:flutter_new/screens/splash_screen.dart';
+import 'package:flutter_new/screens/homeSreen_.dart';
+
 import 'package:flutter_new/widgets/user.dart';
 
 void main() async{
@@ -22,9 +22,11 @@ class MyApp extends StatelessWidget {
 
       theme: ThemeData(fontFamily: 'Poppins'),
       home: MainPage(),
-      //HomeScreen(),
         //SplashScreen(),
+      //HomeSreeen(),
 
     );
   }
 }
+
+

@@ -2,8 +2,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_new/theme.dart';
-import 'package:flutter_new/widgets/profile_page.dart';
-
 import 'add_survey.dart';
 
 class SurveyScreen extends StatefulWidget {
@@ -13,6 +11,9 @@ class SurveyScreen extends StatefulWidget {
 }
 
 class _SurveyScreenState extends State<SurveyScreen> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,9 +43,6 @@ class _SurveyScreenState extends State<SurveyScreen> {
             SizedBox(
               height: 50,
             ),
-
-
-
 
 
             //Create Survey Button
@@ -84,8 +82,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
                   MaterialButton(
                     onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => ProfileScreen(),),);
+
                     },
                     child: Text(
                         "My Data", style: textButton),
@@ -94,6 +91,8 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
               ),
             ),
+
+
 
 
           ],

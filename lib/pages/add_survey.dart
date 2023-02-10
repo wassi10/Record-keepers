@@ -129,7 +129,6 @@ class _CreateASurveyState extends State<CreateASurvey> {
 
             Navigator.push(context, MaterialPageRoute(builder:  (context) => SurveyDuration(),),);
           },
-
           label:  const Text("Next", style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),),
           backgroundColor: primaryColor,
         ),

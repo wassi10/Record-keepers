@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
 
-import 'make_payments.dart';
 
 class CreateSurveyQuestion extends StatefulWidget {
   const CreateSurveyQuestion({Key? key}) : super(key: key);
@@ -321,9 +320,9 @@ class _CreateSurveyQuestionState extends State<CreateSurveyQuestion> {
         floatingActionButton: FloatingActionButton.extended(
           onPressed:
               (){
-            Navigator.push(context, MaterialPageRoute(builder:  (context) => const MakePayments(),),);
+
           },
-          label: const Icon(Icons.save_rounded),
+          label:  const Text("Save", style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),),
           backgroundColor: primaryColor,
         ),
 

@@ -6,7 +6,8 @@ import 'package:flutter_new/screens/signup.dart';
 import 'package:flutter_new/theme.dart';
 import '../widgets/buttons.dart';
 import 'forgot_password.dart';
-import 'home_screen.dart';
+import 'homeSreen_.dart';
+
 
 
 class LogInScreen extends StatefulWidget {
@@ -90,7 +91,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailTextController.text, password: _passswordTextController.text).then((value) {
                     print("Login Successfully");
                     Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => HomeScreen(),),);
+                      builder: (context) => HomeSreeen(),),);
 
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");

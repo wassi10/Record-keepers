@@ -34,14 +34,7 @@ class _NotesState extends State<Notes> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Notes',
-          style: TextStyle(color: whiteColor),
-        ),
-        elevation: 0,
-        backgroundColor: primaryColor,
-      ),
+
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(
@@ -57,6 +50,8 @@ class _NotesState extends State<Notes> {
         label: Icon(Icons.add),
         backgroundColor: primaryColor,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
       body: StreamBuilder(
         stream: ref.snapshots(),
         //  future: ref.get(),
