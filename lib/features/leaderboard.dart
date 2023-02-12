@@ -13,20 +13,16 @@ class _LeaderBoardState extends State<LeaderBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      // appBar: AppBar(
-      //   backgroundColor: primaryColor,
-      //   leading: Icon(Icons.arrow_back),
-      //   actions: [
-      //     IconButton(onPressed: (){}, icon: Icon(Icons.share)),
-      //     IconButton(onPressed: (){}, icon: Icon(Icons.person_add)),
-      //   ],
-      //   title: Text(
-      //     "Profile",
-      //     style: TextStyle(fontSize: 28),
-      //   ),
-      //   centerTitle: true,
-      //   elevation: 0.0,
-      // ),
+      appBar: AppBar(
+        backgroundColor: primaryColor,
+        title: Text(
+          "Profile",
+          style: TextStyle(fontSize: 20),
+        ),
+        // centerTitle: true,
+        elevation: 0.0,
+        automaticallyImplyLeading: false, // this is for remove the back button
+      ),
       body: SingleChildScrollView(
 
         child: Column(
@@ -80,32 +76,32 @@ class _LeaderBoardState extends State<LeaderBoard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Column(
-                        children: [
-                          Text(
-                            "45",
-                            style: TextStyle(
-                                fontSize: 42,
-                                fontWeight: FontWeight.w300,
-                                color: Colors.white.withOpacity(0.9)),
-                          ),
-                          const Text("Level",
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white)),
-                        ],
-                      ),
+                      // Column(
+                      //   children: [
+                      //     // Text(
+                      //     //   "45",
+                      //     //   style: TextStyle(
+                      //     //       fontSize: 42,
+                      //     //       fontWeight: FontWeight.w300,
+                      //     //       color: Colors.white.withOpacity(0.9)),
+                      //     // ),
+                      //     const Text("Level",
+                      //         style: TextStyle(
+                      //             fontSize: 25,
+                      //             fontWeight: FontWeight.bold,
+                      //             color: Colors.white)),
+                      //   ],
+                      // ),
                       Column(
                         children: [
                           Text("#335",
                               style: TextStyle(
-                                  fontSize: 42,
+                                  fontSize: 25,
                                   fontWeight: FontWeight.w300,
                                   color: Colors.white.withOpacity(0.9))),
                           const Text("Rank",
                               style: TextStyle(
-                                  fontSize: 25,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white)),
                         ],
@@ -120,7 +116,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
             ),
             const Text(
               "Leader Board",
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Container(
               margin: const EdgeInsets.all(20),
@@ -147,7 +143,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                           "Rs.${(200000 / (index + 1)).toString().substring(0, 5)}", style: const TextStyle(fontWeight: FontWeight.bold),),
                       );
                     },
-                    separatorBuilder: (Context, index) => const Divider(thickness: 1,color: Colors.blue,indent: 10, endIndent: 10,),
+                    separatorBuilder: (context, index) => const Divider(thickness: 1,color: Colors.blue,indent: 10, endIndent: 10,),
                     itemCount: 12),
               ),
             )

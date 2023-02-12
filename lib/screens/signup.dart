@@ -34,7 +34,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           crossAxisAlignment: CrossAxisAlignment.start, // left side theke
 
           children: [
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
 
@@ -45,7 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 'Create account', style: titleText,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
 
@@ -56,13 +56,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Text(
                     "Already have account?", style: subTitle,),
 
-                  SizedBox(
+                  const SizedBox(
                     height: 5,),
 
                   GestureDetector(
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => LogInScreen(),),);
+                        builder: (context) => const LogInScreen(),),);
                     },
                     child: Text(
                         " Sign In", style: textButton),
@@ -72,7 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
 
@@ -90,7 +90,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
 
 
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
 
@@ -102,7 +102,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 FirebaseAuth.instance.createUserWithEmailAndPassword(email: _emailTextController.text, password: _passswordTextController.text).then((value) {
                   print("Created new account");
                    Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => LogInScreen(),),);
+                    builder: (context) => const LogInScreen(),),);
                 }).onError((error, stackTrace) {
                   print("Error ${error.toString()}");
                 });
@@ -119,7 +119,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
 
 
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
 
@@ -135,7 +135,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
 
@@ -152,7 +152,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
 
                LogoButtons(
-                  iconImage: Image(
+                  iconImage: const Image(
                     height: 30,
                     width: 30,
                     image: AssetImage('assets/google.png'),
@@ -178,16 +178,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Padding BuildInputForm(String hint, bool pass, ctrl) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5),
+      padding: const EdgeInsets.symmetric(vertical: 5),
       child: TextFormField(
         obscureText: pass ? _isObscure: false,
 
         controller: ctrl,
 
         decoration: InputDecoration(
-            hintText: hint, hintStyle: TextStyle(color: blackColor),
+            hintText: hint, hintStyle: const TextStyle(color: blackColor),
 
-            focusedBorder: UnderlineInputBorder(
+            focusedBorder: const UnderlineInputBorder(
               borderSide: BorderSide(
                   color: blackColor),
             ),
@@ -244,7 +244,7 @@ class LogoButtons extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center, // google logo center e ashar jonno
         children: [
           iconImage,
-          SizedBox(height: 5,),
+          const SizedBox(height: 5,),
           Text(textButtton),
         ],
       ),

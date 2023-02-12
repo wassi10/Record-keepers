@@ -15,8 +15,8 @@ class HomeSreeen extends StatefulWidget {
 
 class _HomeSreeenState extends State<HomeSreeen> {
 
-  //for sign out
-  final user = FirebaseAuth.instance.currentUser!;
+  // //for sign out
+  // final user = FirebaseAuth.instance.currentUser!;
 
   int currentTab = 0;
   final List<Widget> screens = [

@@ -23,13 +23,13 @@ class _SurveyScreenState extends State<SurveyScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: primaryColor,
-        title: Text('Create a survey', style: TextStyle(color: whiteColor), ),
+        title: const Text('Create a survey', style: TextStyle(color: whiteColor), ),
 
         automaticallyImplyLeading: false, // this is for remove the back button
         actions: <Widget>[
           IconButton(
               onPressed: (){},
-            icon: Icon(Icons.notifications_none_rounded), color: whiteColor,
+            icon: const Icon(Icons.notifications_none_rounded), color: whiteColor,
 
           ),
         ],
@@ -41,7 +41,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
 
@@ -55,22 +55,24 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
               child:  Container(
 
-                color: primaryColor,
-                height: MediaQuery.of(context).size.height*0.18,
-                width: double.infinity,
+                // color: primaryColor,
+                width: MediaQuery.of(context).size.width,
+                height: 180,
+                // width: double.infinity,
                 alignment: Alignment.center,
 
-                child:   Padding(
+                decoration: BoxDecoration( color: primaryColor,borderRadius: BorderRadius.circular(25),),
+
+                child: const Padding(
                   padding: EdgeInsets.all(20.0),
                   child:Text('Create Survey', style: TextStyle(fontSize: 28,fontFamily: 'poppins', color: whiteColor),
-
-              ),
+                      ),
                 ),
 
             ),
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 70,
             ),
 
@@ -92,9 +94,6 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
               ),
             ),
-
-
-
 
           ],
 

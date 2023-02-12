@@ -56,7 +56,7 @@ class _SurveyDashboardState extends State<SurveyDashboard> {
         notchMargin: 10,
 
         child: Container(
-          color: primaryColor, // bottom appbar color
+          color: Colors.grey.shade600, // bottom appbar color
           height: 70,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
