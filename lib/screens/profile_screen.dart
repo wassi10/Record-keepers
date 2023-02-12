@@ -30,7 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           children: [
             SizedBox(
-              height: 350,
+              height: 370,
             ),
 
             //change password
@@ -39,8 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Navigator.push(context, MaterialPageRoute(builder:  (context) => ChangePassword(),),);
               },
               child: const ListTile(
-                // leading: Icon(Icons.arrow_back_ios_sharp),
-                title: Text(' Change Password',
+                title: Text('Change Password',
                   style: TextStyle(
                       fontFamily: 'poppins',fontSize: 20, color: blackColor, fontWeight: FontWeight.w500
                   ),
@@ -48,6 +47,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
 
+            //about app
+            MaterialButton(
+              onPressed: (){
+
+              },
+              child: ListTile(
+                title: Text('About app',
+                  style: TextStyle(
+                      fontFamily: 'poppins',fontSize: 20, color: blackColor, fontWeight: FontWeight.w500
+                  ),
+                ),
+              ),
+            ),
 
             //logout button
             MaterialButton(
@@ -58,11 +70,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 leading: Icon(Icons.arrow_back_ios_sharp),
                 title: Text('  Log Out',
                   style: TextStyle(
-                      fontFamily: 'poppins',fontSize: 20, color: blackColor, fontWeight: FontWeight.w500
+                      fontFamily: 'poppins',fontSize: 18, color: blackColor, fontWeight: FontWeight.w500
                   ),
                 ),
               ),
             ),
+
           ],
 
         ),

@@ -13,6 +13,8 @@ class ChangePassword extends StatefulWidget {
 
 class _ChangePasswordState extends State<ChangePassword> {
 
+  final _formKey = GlobalKey<FormState>();
+
   var newPass = " ";
   final newPassController = TextEditingController();
 
@@ -27,7 +29,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     try{
       await user!.updatePassword(newPass);
       FirebaseAuth.instance.signOut();
-      Navigator.push(context, MaterialPageRoute(builder:  (context) => LogInScreen(),),);
+      Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => LogInScreen(),),);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           backgroundColor: whiteColor,
           content: Text('Password has been changed, Login Again!'),),);
@@ -44,7 +46,9 @@ class _ChangePasswordState extends State<ChangePassword> {
         automaticallyImplyLeading: false, // this is for remove the back button
       ),
 
-      body: Padding(padding: defaultPadding,
+      body: Form(
+        key: _formKey,
+      child: Padding(padding: defaultPadding,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,15 +58,21 @@ class _ChangePasswordState extends State<ChangePassword> {
                 height: 250,
               ),
 
-               TextField(
-
-                decoration: InputDecoration(
+               TextFormField(
+                 controller: newPassController,
+                decoration: const InputDecoration(
                   hintText: "Type new password",
                   border: OutlineInputBorder(),
                   contentPadding: EdgeInsets.all(10),
                 ),
 
-                controller: newPassController,
+                 validator: (value){
+                   if(value == null || value.isEmpty){
+                     return 'Please Enter password';
+                   }
+                   return null;
+                 },
+
               ),
 
 
@@ -71,12 +81,19 @@ class _ChangePasswordState extends State<ChangePassword> {
               ),
 
 
+              //change pass
               MaterialButton(
                 onPressed: (){
 
+                  if(_formKey.currentState!.validate()){
+                    setState(() {
+                      newPass = newPassController.text;
+                    });
+                    changePass();
+                  }
                 },
 
-                child:Buttons(buttonText: "Change Password") ,
+                child:Buttons(buttonText: "Confirm") ,
               ),
 
             ],
@@ -86,6 +103,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         ),
 
       ),
+    ),
 
     );
   }
