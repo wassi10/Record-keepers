@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_new/screens/_uploadPhoto.dart';
 import 'package:flutter_new/screens/change_pass.dart';
 
 import '../theme.dart';
@@ -17,70 +19,208 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    late User? user = auth.currentUser;
+    late String? uid = user?.uid;
+    CollectionReference reef = FirebaseFirestore.instance.collection('uinfo');
     return Scaffold(
-
       appBar: AppBar(
-        title: const Text('Profile', style: TextStyle(color: whiteColor), ),
+        title: const Text(
+          'Profile',
+          style: TextStyle(color: whiteColor),
+        ),
         elevation: 0,
         backgroundColor: primaryColor,
         automaticallyImplyLeading: false, // this is for remove the back button
       ),
+      body: StreamBuilder(
+          stream: reef.snapshots(),
+          builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+            if (streamSnapshot.hasData) {
+              return ListView.builder(
+                  itemCount: streamSnapshot.data?.docs.length,
+                  itemBuilder: (context, index) {
+                    DocumentSnapshot data = streamSnapshot.data!.docs[index];
+                    if (uid == data.id) {
+                      return SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 20,
+                            ),
+                            data['img'] == null
+                                ?
+                                 Column(
+                                  children:[
+                                 Stack(
+                                    children: [
+                                      CircleAvatar(
+                                        backgroundColor: Colors.grey,
+                                        radius: 95,
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.grey,
+                                          radius: 90,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 175,left: 80),
+                                  child: InkWell(
+                                    onTap: (){
+                                      Navigator.push(context, MaterialPageRoute(builder:  (context) => Uploadphoto(),),);
+                                    },
+                                    child: Container(
+                                            decoration: BoxDecoration(color: Colors.white,
+                                            borderRadius: BorderRadius.circular(100),
+                                            ),child: Icon(Icons.add)),
+                                  ),
+                                      ),
+                                    ]
+                                    ),
+                                        //SizedBox(height: 600,),
+                                          Text(data['name'],style:TextStyle(
+                                              fontFamily: 'poppins',
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold,
+                                            
 
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 370,
-            ),
+                                          ),
+                                          textAlign: TextAlign.justify,
+                                          ),
+                                          // SizedBox(height: 10,),
+                                          Text(data['email'],style:TextStyle(
+                                              fontFamily: 'poppins',
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                           //   color: Colors.grey,
+                                            
+                                          ),
+                                          textAlign: TextAlign.justify,),  
 
-            //change password
-            MaterialButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder:  (context) => ChangePassword(),),);
-              },
-              child: const ListTile(
-                title: Text('Change Password',
-                  style: TextStyle(
-                      fontFamily: 'poppins',fontSize: 20, color: blackColor, fontWeight: FontWeight.w500
-                  ),
-                ),
-              ),
-            ),
+                          ])
+                              
+                                 
 
-            //about app
-            MaterialButton(
-              onPressed: (){
+                                : Stack(
+                                    children: [
+                                      
+                                      CircleAvatar(
+                                         backgroundColor: Colors.grey,
+                                        radius: 95,
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.grey,
+                                          backgroundImage: NetworkImage(
+                                            data['img'],
+                                          ),
+                                          radius: 90,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 175,left: 80),
+                                        child: InkWell(
+                                          onTap: (() {
+                                            Navigator.push(context, MaterialPageRoute(builder:  (context) => Uploadphoto(),),);
+                                          }),
+                                          child: Container(
+                                            decoration: BoxDecoration(color: Colors.white,
+                                            borderRadius: BorderRadius.circular(100),
+                                            ),child: Icon(Icons.add)),
+                                        ),
+                                      ),
+                           ] ),
+                                    // SizedBox(height: 600,),
+                                          Text(data['name'],style:TextStyle(
+                                              fontFamily: 'poppins',
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold,
+                                            
 
-              },
-              child: ListTile(
-                title: Text('About app',
-                  style: TextStyle(
-                      fontFamily: 'poppins',fontSize: 20, color: blackColor, fontWeight: FontWeight.w500
-                  ),
-                ),
-              ),
-            ),
+                                          ),
+                                          textAlign: TextAlign.justify,
+                                          ),
+                                           //SizedBox(height: 10,),
+                                          Text(data['email'],style:TextStyle(
+                                            fontFamily: 'poppins',
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                           // color: Colors.grey,
+                                            
+                                          ),
+                                          textAlign: TextAlign.justify,
+                                          ), 
+                                   
+                                    
+                            SizedBox(height: 50,),
+                            //change password
+                            MaterialButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ChangePassword(),
+                                  ),
+                                );
+                              },
+                              child: const ListTile(
+                                title: Text(
+                                  'Change Password',
+                                  style: TextStyle(
+                                      fontFamily: 'poppins',
+                                      fontSize: 20,
+                                      color: blackColor,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                            ),
 
-            //logout button
-            MaterialButton(
-              onPressed: (){
-                FirebaseAuth.instance.signOut();
-              },
-              child: const ListTile(
-                leading: Icon(Icons.arrow_back_ios_sharp),
-                title: Text('  Log Out',
-                  style: TextStyle(
-                      fontFamily: 'poppins',fontSize: 18, color: blackColor, fontWeight: FontWeight.w500
-                  ),
-                ),
-              ),
-            ),
+                            //about app
+                            MaterialButton(
+                              onPressed: () {},
+                              child: ListTile(
+                                title: Text(
+                                  'About app',
+                                  style: TextStyle(
+                                      fontFamily: 'poppins',
+                                      fontSize: 20,
+                                      color: blackColor,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                            ),
 
-          ],
-
-        ),
-
-      ),
+                            //logout button
+                            MaterialButton(
+                              onPressed: () {
+                                FirebaseAuth.instance.signOut();
+                              },
+                              child: const ListTile(
+                                leading: Icon(Icons.arrow_back_ios_sharp),
+                                title: Text(
+                                  '  Log Out',
+                                  style: TextStyle(
+                                      fontFamily: 'poppins',
+                                      fontSize: 18,
+                                      color: blackColor,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                            ),
+                          ]
+                        ) 
+                       
+                      );
+                    } else {
+                      return Container(
+                        height: 0,
+                        width: 0,
+                      );
+                    }
+                  });
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          }),
     );
   }
 }

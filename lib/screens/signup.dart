@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -99,7 +100,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
             GestureDetector(
               onTap: (){
 
-                FirebaseAuth.instance.createUserWithEmailAndPassword(email: _emailTextController.text, password: _passswordTextController.text).then((value) {
+                FirebaseAuth.instance.createUserWithEmailAndPassword(email: _emailTextController.text, password: _passswordTextController.text)
+                .then((value) {
+                 FirebaseFirestore.instance
+                      .collection('uinfo')
+                      .doc(FirebaseAuth.instance.currentUser?.uid)
+                      .set(
+                    {
+                      'email': _emailTextController.text,
+                      'name': _nameTextController.text,
+                      'img': "",
+                    },
+                  );
+
+                 
                   print("Created new account");
                    Navigator.push(context, MaterialPageRoute(
                     builder: (context) => const LogInScreen(),),);
