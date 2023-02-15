@@ -104,19 +104,3 @@ class _WalletState extends State<Wallet> {
             }));
   }
 }
-
-// children: const [
-//
-// SizedBox(
-// height: 80,
-// ),
-// Text('Balance',
-// style: TextStyle(color: secondaryColor, fontSize: 20),
-// ),
-// SizedBox(
-// height: 20,
-// ),
-// Text("\$ 1000.00",
-// style: TextStyle(color: blackColor, fontSize: 30, fontWeight: FontWeight.bold),
-// ),
-// ],

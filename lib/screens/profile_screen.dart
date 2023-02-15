@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_new/screens/_uploadPhoto.dart';
 import 'package:flutter_new/screens/change_pass.dart';
+import 'package:flutter_new/widgets/user.dart';
 
 import '../theme.dart';
 
@@ -159,7 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
 
                         SizedBox(
-                          height: 20,
+                          height: 50,
                         ),
                         //change password
                         MaterialButton(
@@ -202,12 +203,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         MaterialButton(
                           onPressed: () {
                             FirebaseAuth.instance.signOut();
-                            
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage(),),);
                           },
                           child: const ListTile(
-                            leading: Icon(Icons.arrow_back_ios_sharp),
+                            leading: Icon(Icons.arrow_back),
                             title: Text(
-                              '  Log Out',
+                              'Log Out',
                               style: TextStyle(
                                   fontFamily: 'poppins',
                                   fontSize: 18,

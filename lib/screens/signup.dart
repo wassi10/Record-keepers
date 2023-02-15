@@ -163,18 +163,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
               children: [
                 //for google logo
+                MaterialButton(
+                    onPressed: (){
+                  signInWithGoogle();
+                },
+                  child:  LogoButtons(
+                    iconImage: const Image(
+                      height: 30,
+                      width: 30,
+                      image: AssetImage('assets/google.png'),
+                    ),
+                    textButtton: ' Google',
 
-
-
-               LogoButtons(
-                  iconImage: const Image(
-                    height: 30,
-                    width: 30,
-                    image: AssetImage('assets/google.png'),
                   ),
-                  textButtton: ' Google',
 
-                  ),
+                ),
+
+
+
 
 
 
@@ -221,16 +227,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   //firebaseAuth using google
-  // void signInWithGoogle()async {
-  //   GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-  //   GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-  //   AuthCredential credential = GoogleAuthProvider.credential(
-  //     accessToken: googleAuth?.accessToken,
-  //     idToken: googleAuth?.idToken
-  //   );
-  //  UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-  //  print(userCredential.user?.displayName);
-  // }
+  void signInWithGoogle()async {
+    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken
+    );
+   UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+   print(userCredential.user?.displayName);
+  }
 }
 
 
