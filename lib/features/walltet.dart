@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../theme.dart';
@@ -12,16 +14,33 @@ class Wallet extends StatefulWidget {
 class _WalletState extends State<Wallet> {
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    late User? user = auth.currentUser;
+    late String? uid = user?.uid;
+    Query<Map<String, dynamic>> reef =
+        FirebaseFirestore.instance.collection('uinfo');
+
     return Scaffold(
-
-      appBar: AppBar(
-        title: const Text('Wallet', style: TextStyle(color: whiteColor), ),
-        elevation: 0,
-        backgroundColor: primaryColor,
-        automaticallyImplyLeading: false, // this is for remove the back button
-      ),
-
-      body: Padding(
+        appBar: AppBar(
+          title: const Text(
+            'Wallet',
+            style: TextStyle(color: whiteColor),
+          ),
+          elevation: 0,
+          backgroundColor: primaryColor,
+          automaticallyImplyLeading:
+              false, // this is for remove the back button
+        ),
+        body: StreamBuilder(
+            stream: reef.snapshots(),
+            builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+              if (streamSnapshot.hasData) {
+                return ListView.builder(
+                    itemCount: streamSnapshot.data?.docs.length,
+                    itemBuilder: (context, index) {
+                      DocumentSnapshot data = streamSnapshot.data!.docs[index];
+                      if (data.id == uid) {
+                        return  Padding(
         padding: defaultPadding,
         child: SingleChildScrollView(
           child: Column(
@@ -40,7 +59,7 @@ class _WalletState extends State<Wallet> {
                 decoration: BoxDecoration( color: primaryColor,borderRadius: BorderRadius.circular(25),),
 
                 child: Column(
-                  children: const [
+                  children:  [
                     SizedBox(
                       height: 30,
                     ),
@@ -50,7 +69,8 @@ class _WalletState extends State<Wallet> {
                     SizedBox(
                       height: 20,
                     ),
-                    Text("\$ 1000.00",
+                    Text("\$ ${data['score']}",
+                    
                       style: TextStyle(color: whiteColor, fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -61,8 +81,27 @@ class _WalletState extends State<Wallet> {
           ),
 
         ),
-      ),
-    );
+      );
+
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                      } else {
+                        return Container();
+                      }
+                    });
+              } else {
+                return Text("No users");
+              }
+            }));
   }
 }
 

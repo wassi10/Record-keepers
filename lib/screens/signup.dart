@@ -110,6 +110,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       'email': _emailTextController.text,
                       'name': _nameTextController.text,
                       'img': "",
+                      'score': 0,
                     },
                   );
 

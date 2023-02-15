@@ -43,6 +43,7 @@ class _UploadphotoState extends State<Uploadphoto> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Upload Photo'),
+          backgroundColor: primaryColor,
         ),
         body: StreamBuilder(
             stream: reef.snapshots(),
