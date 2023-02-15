@@ -86,13 +86,7 @@ class _WalletState extends State<Wallet> {
                         
                         
                         
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+
                         
                       } else {
                         return Container();

@@ -6,6 +6,7 @@ import 'package:flutter_new/screens/change_pass.dart';
 import 'package:flutter_new/widgets/user.dart';
 
 import '../theme.dart';
+import 'about_app.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -34,6 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: primaryColor,
         automaticallyImplyLeading: false, // this is for remove the back button
       ),
+      
       body: StreamBuilder(
           stream: reef.snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
@@ -45,13 +47,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     if (uid == data.id) {
                       return SingleChildScrollView(
                           child: Column(children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         data['img'] == null
                             ? Column(children: [
                                 Stack(children: [
-                                  CircleAvatar(
+                                  const CircleAvatar(
                                     backgroundColor: Colors.grey,
                                     radius: 95,
                                     child: CircleAvatar(
@@ -77,14 +79,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             borderRadius:
                                                 BorderRadius.circular(100),
                                           ),
-                                          child: Icon(Icons.add)),
+                                          child: const Icon(Icons.add)),
                                     ),
                                   ),
                                 ]),
                                 //SizedBox(height: 600,),
                                 Text(
                                   data['name'],
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontFamily: 'poppins',
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold,
@@ -94,7 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 // SizedBox(height: 10,),
                                 Text(
                                   data['email'],
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontFamily: 'poppins',
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
@@ -133,14 +135,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           borderRadius:
                                               BorderRadius.circular(100),
                                         ),
-                                        child: Icon(Icons.add)),
+                                        child: const Icon(Icons.add)),
                                   ),
                                 ),
                               ]),
                         // SizedBox(height: 600,),
                         Text(
                           data['name'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'poppins',
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
@@ -150,7 +152,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         //SizedBox(height: 10,),
                         Text(
                           data['email'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'poppins',
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -159,16 +161,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           textAlign: TextAlign.justify,
                         ),
 
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
+                        
                         //change password
                         MaterialButton(
                           onPressed: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ChangePassword(),
+                                builder: (context) => const ChangePassword(),
                               ),
                             );
                           },
@@ -186,8 +189,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                         //about app
                         MaterialButton(
-                          onPressed: () {},
-                          child: ListTile(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUs(),),);
+                          },
+                          child: const ListTile(
                             title: Text(
                               'About app',
                               style: TextStyle(
@@ -226,7 +231,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     }
                   });
             } else {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
           }),
     );
