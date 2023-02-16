@@ -15,7 +15,7 @@ class _ParticipateScreenState extends State<ParticipateScreen> {
     return Scaffold(
 
       appBar: AppBar(
-        title: const Text('Home', style: TextStyle(color: whiteColor), ),
+        title: const Text('Home', style: TextStyle(fontSize: 22, color: whiteColor, fontWeight: FontWeight.w700), ),
         elevation: 0,
         backgroundColor: primaryColor,
         automaticallyImplyLeading: false, // this is for remove the back button

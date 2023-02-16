@@ -25,11 +25,12 @@ class _LeaderBoardState extends State<LeaderBoard> {
         .orderBy('score', descending: true)
         .snapshots();
     return Scaffold(
+
         appBar: AppBar(
           backgroundColor: primaryColor,
           title: Text(
             "Leader Board",
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
           ),
           // centerTitle: true,
           elevation: 0.0,
@@ -68,21 +69,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                    radius: 50,
                                              
                                             ),
-                                            Positioned(
-                                              bottom: 0.0,
-                                              right: 0.0,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(4),
-                                                decoration: const BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: Colors.white),
-                                                child: const Icon(
-                                                  Icons.edit,
-                                                  color: Colors.blueAccent,
-                                                ),
-                                              ),
-                                            )
+
                                           ],
                                         ),
                                         const SizedBox(

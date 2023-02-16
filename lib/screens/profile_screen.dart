@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         title: const Text(
           'Profile',
-          style: TextStyle(color: whiteColor),
+          style: TextStyle(fontSize: 22,color: whiteColor, fontWeight: FontWeight.w700),
         ),
         elevation: 0,
         backgroundColor: primaryColor,

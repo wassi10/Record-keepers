@@ -55,13 +55,13 @@ class _SurveyDurationState extends State<SurveyDuration> {
                 height: 15,
               ),
 
-              const Text('Start',
+              const Text('Start & End',
                   style: TextStyle(fontSize: 18,fontFamily: 'poppins',
                       fontWeight: FontWeight.w400, color: secondaryColor)
               ),
 
               const SizedBox(
-                height: 5,
+                height: 15,
               ),
 
               // start date
@@ -85,7 +85,6 @@ class _SurveyDurationState extends State<SurveyDuration> {
                          }
                       },
 
-
                       child: const Text('Select Date', style: TextStyle(fontSize: 20,fontFamily: 'poppins', color: whiteColor),
                       ),
                   ),
@@ -100,17 +99,9 @@ class _SurveyDurationState extends State<SurveyDuration> {
 
 
               const SizedBox(
-                height: 25,
-              ),
-
-              const Text('End',
-                  style: TextStyle(fontSize: 18,fontFamily: 'poppins',
-                      fontWeight: FontWeight.w400, color: secondaryColor)
-              ),
-
-              const SizedBox(
                 height: 5,
               ),
+
 
               // end date
               Row(
@@ -146,7 +137,7 @@ class _SurveyDurationState extends State<SurveyDuration> {
               ),
 
               const SizedBox(
-                height: 55,
+                height: 40,
               ),
 
               const Text('Select a Category',
@@ -215,21 +206,5 @@ class _SurveyDurationState extends State<SurveyDuration> {
 
   }
 
-  // void add() async {
-  //   //save to firestore
-  //   CollectionReference ref = FirebaseFirestore.instance.collection(
-  //       'surveyInfo').doc(FirebaseAuth.instance.currentUser?.uid).collection(
-  //       'information');
-  //
-  //   var data = {
-  //     'Category': chooseCategory,
-  //     'startDate': startDate,
-  //     'endDate': endDate,
-  //   };
-  //   ref.add(data);
-  //
-  //   Navigator.push(context, MaterialPageRoute(
-  //     builder: (context) => CreateSurveyQuestion(),),);
-  // }
 
 }
