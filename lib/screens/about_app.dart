@@ -98,7 +98,7 @@ class _AboutUsState extends State<AboutUs> {
                   child: Card(
                     elevation: 5.0,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                     child: Container(
                       width: MediaQuery.of(context).size.width,

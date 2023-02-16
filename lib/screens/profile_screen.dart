@@ -166,61 +166,94 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         
                         //change password
-                        MaterialButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ChangePassword(),
-                              ),
-                            );
-                          },
-                          child: const ListTile(
-                            title: Text(
-                              'Change Password',
-                              style: TextStyle(
-                                  fontFamily: 'poppins',
-                                  fontSize: 20,
-                                  color: blackColor,
-                                  fontWeight: FontWeight.w500),
+                        Padding(
+                          padding: defaultPadding,
+                          child: MaterialButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const ChangePassword(),
+                                ),
+                              );
+                            },
+                            padding: EdgeInsets.all(15),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15),),
+                            color: Colors.white70,
+                            child: Row(
+                              children: const [
+                                Icon(Icons.lock_open, color: primaryColor,),
+                                SizedBox(width: 20,),
+                                Expanded(child: Text('Change Password',style: TextStyle(
+                                    fontFamily: 'poppins',
+                                    fontSize: 18,
+                                    color: blackColor,
+                                    fontWeight: FontWeight.w500),),),
+                                Icon(Icons.arrow_forward_ios, color: primaryColor,),
+                              ],
                             ),
                           ),
                         ),
 
-                        //about app
-                        MaterialButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUs(),),);
-                          },
-                          child: const ListTile(
-                            title: Text(
-                              'About app',
-                              style: TextStyle(
-                                  fontFamily: 'poppins',
-                                  fontSize: 20,
-                                  color: blackColor,
-                                  fontWeight: FontWeight.w500),
+                            SizedBox(
+                              height: 10,
                             ),
-                          ),
+
+                            //about app
+                            Padding(
+                              padding: defaultPadding,
+                              child: MaterialButton(
+                                onPressed: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUs(),),);
+                                },
+                                padding: EdgeInsets.all(15),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15),),
+                                color: Colors.white70,
+                                child: Row(
+                                  children: const [
+                                    Icon(Icons.account_box_outlined, color: primaryColor,),
+                                    SizedBox(width: 20,),
+                                    Expanded(child: Text('About App',style: TextStyle(
+                                        fontFamily: 'poppins',
+                                        fontSize: 18,
+                                        color: blackColor,
+                                        fontWeight: FontWeight.w500),),),
+                                    Icon(Icons.arrow_forward_ios, color: primaryColor,),
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                        SizedBox(
+                          height: 10,
                         ),
 
                         //logout button
-                        MaterialButton(
+                       Padding(
+                         padding: defaultPadding,
+
+                         child:MaterialButton(
                           onPressed: () {
                             FirebaseAuth.instance.signOut();
                             Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage(),),);
                           },
-                          child: const ListTile(
-                            leading: Icon(Icons.arrow_back),
-                            title: Text(
-                              'Log Out',
-                              style: TextStyle(
+                           padding: EdgeInsets.all(15),
+                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15),),
+                           color: Colors.white70,
+                          child: Row(
+                            children: const [
+                              Icon(Icons.logout, color: primaryColor,),
+                              SizedBox(width: 20,),
+                              Expanded(child: Text('Logout',style: TextStyle(
                                   fontFamily: 'poppins',
                                   fontSize: 18,
                                   color: blackColor,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
+                                  fontWeight: FontWeight.w500),),),
+                              Icon(Icons.arrow_forward_ios, color: primaryColor,),
+                            ],
+                          )
+
+                        ),
                         ),
                       ]));
                     } else {
