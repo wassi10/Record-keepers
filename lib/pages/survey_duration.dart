@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_new/pages/create_survey_question.dart';
 import 'package:flutter_new/theme.dart';
 import 'dart:core';
-
-
 class SurveyDuration extends StatefulWidget {
-
+ SurveyDuration(this.number,{Key? key}) : super(key: key);
+  dynamic number;
   @override
   State<SurveyDuration> createState() => _SurveyDurationState();
 }
@@ -206,7 +205,7 @@ class _SurveyDurationState extends State<SurveyDuration> {
       //next button
       floatingActionButton: FloatingActionButton.extended(
         onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder:  (context) => const CreateSurveyQuestion(),),);
+          Navigator.push(context, MaterialPageRoute(builder:  (context) => CreateSurveyQuestion(widget.number),),);
         },
         label: const Text("Next", style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),),
         backgroundColor: primaryColor,

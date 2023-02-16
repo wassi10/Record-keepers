@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_new/theme.dart';
 import 'package:flutter_new/screens/login.dart';
+import 'package:flutter_new/widgets/user.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class _SplashScreen extends State<SplashScreen> {
   void initState(){
     super.initState();
     Timer(Duration(seconds: 2), () {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LogInScreen(),),);
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>MainPage(),),);
     });
   }
 

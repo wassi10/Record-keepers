@@ -13,6 +13,7 @@ class _AboutUsState extends State<AboutUs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     // backgroundColor: primaryColor,
       appBar: AppBar(
         title: const Text(
           'About App',
@@ -22,8 +23,10 @@ class _AboutUsState extends State<AboutUs> {
         backgroundColor: primaryColor,
         ),
       body: Padding(
+        
         padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
+          
             children:  [
               SizedBox(
                 height: 15,

@@ -9,7 +9,6 @@ class LeaderBoard extends StatefulWidget {
   @override
   State<LeaderBoard> createState() => _LeaderBoardState();
 }
-
 class _LeaderBoardState extends State<LeaderBoard> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   late User? user = auth.currentUser;
@@ -29,7 +28,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
         appBar: AppBar(
           backgroundColor: primaryColor,
           title: Text(
-            "Profile",
+            "Leader Board",
             style: TextStyle(fontSize: 20),
           ),
           // centerTitle: true,
