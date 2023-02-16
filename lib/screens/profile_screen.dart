@@ -55,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Stack(children: [
                                   const CircleAvatar(
                                     backgroundColor: Colors.grey,
-                                    radius: 95,
+                                    radius: 80,
                                     child: CircleAvatar(
                                       backgroundColor: Colors.grey,
                                       radius: 90,
@@ -107,19 +107,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ])
                             : Stack(children: [
                                 CircleAvatar(
-                                  backgroundColor: Colors.grey,
-                                  radius: 95,
+                                  backgroundColor: primaryColor,
+                                  radius: 85,
                                   child: CircleAvatar(
                                     backgroundColor: Colors.grey,
                                     backgroundImage: NetworkImage(
                                       data['img'],
                                     ),
-                                    radius: 90,
+                                    radius: 80,
                                   ),
                                 ),
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(top: 175, left: 80),
+                                      const EdgeInsets.only(top: 155, left: 75),
                                   child: InkWell(
                                     onTap: (() {
                                       Navigator.push(
