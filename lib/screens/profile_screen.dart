@@ -8,6 +8,8 @@ import 'package:flutter_new/widgets/user.dart';
 import '../theme.dart';
 import 'about_app.dart';
 
+
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -18,7 +20,6 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   //for sign out
   final user = FirebaseAuth.instance.currentUser!;
-
   @override
   Widget build(BuildContext context) {
     final FirebaseAuth auth = FirebaseAuth.instance;
@@ -26,16 +27,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
     late String? uid = user?.uid;
     CollectionReference reef = FirebaseFirestore.instance.collection('uinfo');
     return Scaffold(
+      backgroundColor: Colors.teal[50],
       appBar: AppBar(
         title: const Text(
           'Profile',
-          style: TextStyle(fontSize: 22,color: whiteColor, fontWeight: FontWeight.w700),
+          style: TextStyle(
+              fontSize: 22, color: whiteColor, fontWeight: FontWeight.w700),
         ),
         elevation: 0,
         backgroundColor: primaryColor,
         automaticallyImplyLeading: false, // this is for remove the back button
       ),
-      
       body: StreamBuilder(
           stream: reef.snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
@@ -164,7 +166,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(
                           height: 50,
                         ),
-                        
+
                         //change password
                         Padding(
                           padding: defaultPadding,
@@ -178,82 +180,134 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               );
                             },
                             padding: EdgeInsets.all(15),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15),),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
                             color: Colors.white70,
                             child: Row(
                               children: const [
-                                Icon(Icons.lock_open, color: primaryColor,),
-                                SizedBox(width: 20,),
-                                Expanded(child: Text('Change Password',style: TextStyle(
-                                    fontFamily: 'poppins',
-                                    fontSize: 18,
-                                    color: blackColor,
-                                    fontWeight: FontWeight.w500),),),
-                                Icon(Icons.arrow_forward_ios, color: primaryColor,),
+                                Icon(
+                                  Icons.lock_open,
+                                  color: primaryColor,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    'Change Password',
+                                    style: TextStyle(
+                                        fontFamily: 'poppins',
+                                        fontSize: 18,
+                                        color: blackColor,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: primaryColor,
+                                ),
                               ],
                             ),
                           ),
                         ),
 
-                            SizedBox(
-                              height: 10,
-                            ),
+                        SizedBox(
+                          height: 10,
+                        ),
 
-                            //about app
-                            Padding(
-                              padding: defaultPadding,
-                              child: MaterialButton(
-                                onPressed: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUs(),),);
-                                },
-                                padding: EdgeInsets.all(15),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15),),
-                                color: Colors.white70,
-                                child: Row(
-                                  children: const [
-                                    Icon(Icons.account_box_outlined, color: primaryColor,),
-                                    SizedBox(width: 20,),
-                                    Expanded(child: Text('About App',style: TextStyle(
+                        //about app
+                        Padding(
+                          padding: defaultPadding,
+                          child: MaterialButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AboutUs(),
+                                ),
+                              );
+                            },
+                            padding: EdgeInsets.all(15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            color: Colors.white70,
+                            child: Row(
+                              children: const [
+                                Icon(
+                                  Icons.account_box_outlined,
+                                  color: primaryColor,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    'About App',
+                                    style: TextStyle(
                                         fontFamily: 'poppins',
                                         fontSize: 18,
                                         color: blackColor,
-                                        fontWeight: FontWeight.w500),),),
-                                    Icon(Icons.arrow_forward_ios, color: primaryColor,),
-                                  ],
+                                        fontWeight: FontWeight.w500),
+                                  ),
                                 ),
-                              ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: primaryColor,
+                                ),
+                              ],
                             ),
+                          ),
+                        ),
 
                         SizedBox(
                           height: 10,
                         ),
 
                         //logout button
-                       Padding(
-                         padding: defaultPadding,
-
-                         child:MaterialButton(
-                          onPressed: () {
-                            FirebaseAuth.instance.signOut();
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage(),),);
-                          },
-                           padding: EdgeInsets.all(15),
-                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15),),
-                           color: Colors.white70,
-                          child: Row(
-                            children: const [
-                              Icon(Icons.logout, color: primaryColor,),
-                              SizedBox(width: 20,),
-                              Expanded(child: Text('Logout',style: TextStyle(
-                                  fontFamily: 'poppins',
-                                  fontSize: 18,
-                                  color: blackColor,
-                                  fontWeight: FontWeight.w500),),),
-                              Icon(Icons.arrow_forward_ios, color: primaryColor,),
-                            ],
-                          )
-
-                        ),
+                        Padding(
+                          padding: defaultPadding,
+                          child: MaterialButton(
+                              onPressed: () {
+                                FirebaseAuth.instance.signOut();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MainPage(),
+                                  ),
+                                );
+                              },
+                              padding: EdgeInsets.all(15),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              color: Colors.white70,
+                              child: Row(
+                                children: const [
+                                  Icon(
+                                    Icons.logout,
+                                    color: primaryColor,
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      'Logout',
+                                      style: TextStyle(
+                                          fontFamily: 'poppins',
+                                          fontSize: 18,
+                                          color: blackColor,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: primaryColor,
+                                  ),
+                                ],
+                              )),
                         ),
                       ]));
                     } else {

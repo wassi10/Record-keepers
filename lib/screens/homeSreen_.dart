@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_new/features/leaderboard.dart';
@@ -6,7 +7,13 @@ import 'package:flutter_new/features/walltet.dart';
 import 'package:flutter_new/screens/profile_screen.dart';
 import '../pages/survey_Dashboard.dart';
 import '../theme.dart';
-
+final FirebaseAuth auth = FirebaseAuth.instance;
+                    User? user = auth.currentUser;
+                    String? uid = user?.uid;
+                    String img = "";
+String nam = "";
+                    
+  @override
 class HomeSreeen extends StatefulWidget {
 
   @override
@@ -25,16 +32,22 @@ class _HomeSreeenState extends State<HomeSreeen> {
     LeaderBoard(),
     ProfileScreen(),
   ];
+  
+
+
 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = ParticipateScreen();
 
 
-  @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
+    
+
+
     return Scaffold(
 
-
+    
+                   
 
       // drawer: Drawer(
       //   child: Column(
@@ -91,14 +104,23 @@ class _HomeSreeenState extends State<HomeSreeen> {
 
       //button for create survey screen
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white60,
-          onPressed: (){
+        backgroundColor: primaryColor,
+          onPressed: () async{
+             DocumentReference docRef =
+                        FirebaseFirestore.instance.collection('uinfo').doc(uid);
+                    DocumentSnapshot docSnapshot = await docRef.get();
+
+                    //  Object? data = docSnapshot.data();
+                    // Do something with the data
+
+                    img = docSnapshot['img'];
+                    nam = docSnapshot['name'];
             Navigator.push(context, MaterialPageRoute(builder:  (context) => SurveyDashboard(),),);
           },
-        child: const Icon(Icons.border_color_outlined, color: primaryColor,),
+        child: const Icon(Icons.border_color_outlined, color: whiteColor,),
       ),
 
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
 
       //bottomNavigationBar
       bottomNavigationBar: BottomAppBar(
@@ -117,7 +139,7 @@ class _HomeSreeenState extends State<HomeSreeen> {
 
                   // this button for home that is represents the participate survey dashboard
                   MaterialButton(
-                    minWidth: 70,
+                    minWidth: 90,
                       onPressed: () {
                         setState(() {
                           currentScreen = ParticipateScreen();
@@ -139,7 +161,7 @@ class _HomeSreeenState extends State<HomeSreeen> {
 
                   // this button for wallet
                   MaterialButton(
-                    minWidth:70,
+                    minWidth:90,
                     onPressed: () {
                       setState(() {
                         currentScreen = Wallet();
@@ -182,7 +204,7 @@ class _HomeSreeenState extends State<HomeSreeen> {
                   ),
                   //profile
                   MaterialButton(
-                    minWidth: 40,
+                    minWidth: 0,
                     onPressed: () {
                       setState(() {
                         currentScreen = ProfileScreen();

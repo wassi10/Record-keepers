@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_new/pages/survey_sreen.dart';
 import 'package:flutter_new/screens/homeSreen_.dart';
+import 'package:flutter_new/screens/login.dart';
 
 import '../features/leaderboard.dart';
 import '../screens/profile_screen.dart';
@@ -18,6 +19,7 @@ class SurveyDashboard extends StatefulWidget {
 class _SurveyDashboardState extends State<SurveyDashboard> {
 
   final user = FirebaseAuth.instance.currentUser!;
+
 
   int currentTab = 0;
   final List<Widget> screens = [
@@ -41,14 +43,14 @@ class _SurveyDashboardState extends State<SurveyDashboard> {
 
       //button for create survey screen
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white60,
+        backgroundColor: primaryColor,
         onPressed: (){
           Navigator.push(context, MaterialPageRoute(builder:  (context) => HomeSreeen(),),);
         },
-        child: const Icon(Icons.notes, color: primaryColor,),
+        child: const Icon(Icons.notes, color: whiteColor,),
       ),
 
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
 
 
       bottomNavigationBar: BottomAppBar(
@@ -56,7 +58,7 @@ class _SurveyDashboardState extends State<SurveyDashboard> {
         notchMargin: 10,
 
         child: Container(
-          color: Colors.grey.shade600, // bottom appbar color
+          color: primaryColor.withOpacity(0.9), // bottom appbar color
           height: 70,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,7 +69,7 @@ class _SurveyDashboardState extends State<SurveyDashboard> {
 
                   // this button for home that is represents the participate survey dashboard
                   MaterialButton(
-                    minWidth: 70,
+                    minWidth: 90,
                     onPressed: () {
                       setState(() {
                         currentScreen = SurveyScreen();
@@ -89,7 +91,7 @@ class _SurveyDashboardState extends State<SurveyDashboard> {
 
                   // this button for wallet
                   MaterialButton(
-                    minWidth:70,
+                    minWidth:90,
                     onPressed: () {
                       setState(() {
                         currentScreen = Notes();
@@ -132,7 +134,7 @@ class _SurveyDashboardState extends State<SurveyDashboard> {
                   ),
                   //profile
                   MaterialButton(
-                    minWidth: 40,
+                    minWidth: 60,
                     onPressed: () {
                       setState(() {
                         currentScreen = ProfileScreen();
