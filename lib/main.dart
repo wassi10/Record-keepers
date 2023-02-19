@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_new/screens/homeSreen_.dart';
+import 'package:flutter_new/screens/login.dart';
+import 'package:flutter_new/screens/signup.dart';
 import 'package:flutter_new/screens/splash_screen.dart';
 import 'package:flutter_new/widgets/user.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -19,9 +21,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false, // for default banner remove
 
       theme: ThemeData(fontFamily: 'Poppins'),
-      home: SplashScreen(),
+      home: //LogInScreen(),
+      SplashScreen(),
         //SplashScreen(),
       //HomeSreeen(),
+
 
     );
   }

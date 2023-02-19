@@ -22,8 +22,7 @@ class SurveyDuration extends StatefulWidget {
 
 class _SurveyDurationState extends State<SurveyDuration> {
   late String chooseCategory = "-1";
-
-  DateTime? startDate ;
+  DateTime? startDate = DateTime.now() ;
   DateTime? endDate;
   late String url;
   Map<String, dynamic>? paymentIntent;
@@ -82,48 +81,7 @@ class _SurveyDurationState extends State<SurveyDuration> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(
-                    height: 50,
-                    width: 200,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryColor,
-                      ),
-                      onPressed: () async {
-                        final DateTime? selected = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2010),
-                          lastDate: DateTime(2025),
-                          builder: (context, child) {
-                            return Theme(
-                              data: Theme.of(context).copyWith(
-                                colorScheme: ColorScheme.light(
-                                  primary: primaryColor, // <-- SEE HERE
-                                ),
-                              ),
-                              child: child!,
-                            );
-                          },
-                        );
-                        if (selected != null) {
-                          setState(() {
-                            startDate = selected;
-                          });
-                        }
-                      },
-                      child: Text(
-                         startDate == null
-                            ? ' Date'
-                            : '${startDate!.day}-${startDate!.month}-${startDate!.year}',
-                   
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: 'poppins',
-                            color: whiteColor),
-                      ),
-                    ),
-                  ),
+                  
                 ],
               ),
               const SizedBox(
@@ -356,6 +314,7 @@ class _SurveyDurationState extends State<SurveyDuration> {
         'title': widget.title,
         'details': widget.details,
         'number': widget.number,
+        'url':url,
       };
       ref.add(data);
 

@@ -46,6 +46,7 @@ dependencies:
   image_picker: ^0.8.6+1
   flutter_stripe: ^8.0.0+1
   http: ^0.13.5
+  url_launcher: ^6.1.9
 
 
 dev_dependencies:
