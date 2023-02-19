@@ -122,7 +122,7 @@ class _SureparticipateState extends State<Sureparticipate> {
                       Padding(
                         padding: const EdgeInsets.all(5),
                         child: Text(
-                          widget.endDate,
+                          widget.end,
                           style: TextStyle(fontSize: 20),
                         ),
                       ),
