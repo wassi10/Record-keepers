@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_new/screens/send_otp.dart';
 import 'package:flutter_new/theme.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../widgets/buttons.dart';
@@ -117,7 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                  
                   print("Created new account");
                    Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => const LogInScreen(),),);
+                    builder: (context) => const Emailotp(),),);
                 }).onError((error, stackTrace) {
                   print("Error ${error.toString()}");
                 });

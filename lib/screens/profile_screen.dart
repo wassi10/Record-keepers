@@ -27,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     late String? uid = user?.uid;
     CollectionReference reef = FirebaseFirestore.instance.collection('uinfo');
     return Scaffold(
-      backgroundColor: Colors.teal[50],
+
       appBar: AppBar(
         title: const Text(
           'Profile',
