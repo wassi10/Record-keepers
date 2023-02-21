@@ -13,16 +13,16 @@ import 'dart:convert';
 import '../features/participate_sreen.dart';
 
 class SurveyDuration extends StatefulWidget {
-  SurveyDuration(this.number, this.title, this.details, {Key? key})
+  SurveyDuration(this.number, this.title, this.details,this.img,this.nam, {Key? key})
       : super(key: key);
-  dynamic number, title, details;
+  dynamic number, title, details,img,nam;
   @override
   State<SurveyDuration> createState() => _SurveyDurationState();
 }
 
 class _SurveyDurationState extends State<SurveyDuration> {
   late String chooseCategory = "-1";
-  DateTime? startDate = DateTime.now() ;
+  DateTime? startDate = DateTime.now();
   DateTime? endDate;
   late String url;
   Map<String, dynamic>? paymentIntent;
@@ -80,9 +80,7 @@ class _SurveyDurationState extends State<SurveyDuration> {
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  
-                ],
+                children: [],
               ),
               const SizedBox(
                 height: 10,
@@ -306,17 +304,22 @@ class _SurveyDurationState extends State<SurveyDuration> {
           .collection('surveyInfo')
           .doc(FirebaseAuth.instance.currentUser?.uid)
           .collection('information');
+
+      CollectionReference reef =
+          FirebaseFirestore.instance.collection('survey');
+
       var data = {
-        'name': nam,
-        'image': img,
+        'name': widget.nam,
+        'image': widget.img,
         'startDate': startDate,
         'endDate': endDate,
         'title': widget.title,
         'details': widget.details,
         'number': widget.number,
-        'url':url,
+        'url': url,
       };
       ref.add(data);
+      reef.add(data);
 
       await Stripe.instance.presentPaymentSheet().then((value) => {
             showDialog(

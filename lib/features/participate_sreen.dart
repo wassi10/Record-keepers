@@ -14,9 +14,8 @@ class _ParticipateScreenState extends State<ParticipateScreen> {
   @override
   Widget build(BuildContext context) {
     Query<Map<String, dynamic>> ref = FirebaseFirestore.instance
-        .collection('surveyInfo')
-        .doc(FirebaseAuth.instance.currentUser?.uid)
-        .collection('information').orderBy('startDate',descending: true);
+        .collection('survey')
+        .orderBy('startDate',descending: true);
     final now = DateTime.now();
     return Scaffold(
         appBar: AppBar(

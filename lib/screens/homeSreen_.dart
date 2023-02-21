@@ -7,12 +7,7 @@ import 'package:flutter_new/features/walltet.dart';
 import 'package:flutter_new/screens/profile_screen.dart';
 import '../pages/survey_Dashboard.dart';
 import '../theme.dart';
-final FirebaseAuth auth = FirebaseAuth.instance;
-                    User? user = auth.currentUser;
-                    String? uid = user?.uid;
-                    String img = "";
-String nam = "";
-                    
+
   @override
 class HomeSreeen extends StatefulWidget {
 
@@ -105,17 +100,9 @@ class _HomeSreeenState extends State<HomeSreeen> {
       //button for create survey screen
       floatingActionButton: FloatingActionButton(
         backgroundColor: primaryColor,
-          onPressed: () async{
-             DocumentReference docRef =
-                        FirebaseFirestore.instance.collection('uinfo').doc(uid);
-                    DocumentSnapshot docSnapshot = await docRef.get();
-
-                    //  Object? data = docSnapshot.data();
-                    // Do something with the data
-
-                    img = docSnapshot['img'];
-                    nam = docSnapshot['name'];
-            Navigator.push(context, MaterialPageRoute(builder:  (context) => SurveyDashboard(),),);
+          onPressed: (){
+              
+                                    Navigator.push(context, MaterialPageRoute(builder:  (context) => SurveyDashboard(),),);
           },
         child: const Icon(Icons.border_color_outlined, color: whiteColor,),
       ),
