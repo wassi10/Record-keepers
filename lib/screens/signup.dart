@@ -1,8 +1,10 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:email_otp/email_otp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_new/screens/otp_screen.dart';
 import 'package:flutter_new/screens/send_otp.dart';
 import 'package:flutter_new/theme.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -24,6 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final _nameTextController = TextEditingController();
     final _emailTextController = TextEditingController();
     final _passswordTextController = TextEditingController();
+    EmailOTP myauth = EmailOTP();
 
   @override
   Widget build(BuildContext context) {
@@ -99,29 +102,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
             //Signup button with firebase
             GestureDetector(
-              onTap: (){
+              onTap: ()async{ 
+                myauth.setConfig(
+                          appEmail: "contact@hdevcoder.com",
+                          appName: "Email OTP",
+                          userEmail: _emailTextController.text,
+                          otpLength: 4,
+                          otpType: OTPType.digitsOnly);
+                      if (await myauth.sendOTP() == true) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text("OTP has been sent"),
+                        ));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>   OtpScreen(myauth: myauth,_emailTextController.text,_nameTextController.text,_passswordTextController.text)));
+                      } else {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text("Oops, OTP send failed"),
+                        ));
+                      }
 
-                FirebaseAuth.instance.createUserWithEmailAndPassword(email: _emailTextController.text, password: _passswordTextController.text)
-                .then((value) {
-                 FirebaseFirestore.instance
-                      .collection('uinfo')
-                      .doc(FirebaseAuth.instance.currentUser?.uid)
-                      .set(
-                    {
-                      'email': _emailTextController.text,
-                      'name': _nameTextController.text,
-                      'img': "",
-                      'score': 0,
-                    },
-                  );
 
-                 
-                  print("Created new account");
-                   Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => const Emailotp(),),);
-                }).onError((error, stackTrace) {
-                  print("Error ${error.toString()}");
-                });
+
+
+           
               },
 
               child:  Padding(

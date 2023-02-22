@@ -11,10 +11,12 @@ class CreateASurvey extends StatefulWidget {
 }
 
 class _CreateASurveyState extends State<CreateASurvey> {
-  late String number; // number of participants
-  late String title;
-  late String details;
-
+  String number = ""; // number of participants
+  String title = "";
+  String details = "";
+  bool _validate = false;
+  bool _validate2 = false;
+  bool _validate3 = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,9 +44,12 @@ class _CreateASurveyState extends State<CreateASurvey> {
                   height: 20,
                 ),
                 TextField(
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.all(10),
+                    errorText: _validate2
+                        ? "Number of participants can't be empty"
+                        : null,
                   ),
                   onChanged: (_val) {
                     number = _val;
@@ -63,10 +68,11 @@ class _CreateASurveyState extends State<CreateASurvey> {
                   height: 15,
                 ),
                 TextField(
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Title',
                     contentPadding: EdgeInsets.all(10),
+                    errorText: _validate ? "Title cant be empty" : null,
                   ),
                   onChanged: (_val) {
                     title = _val;
@@ -90,9 +96,10 @@ class _CreateASurveyState extends State<CreateASurvey> {
 
                   //description textformfield
                   child: TextFormField(
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Type Details',
+                      errorText: _validate3 ? "Details cant be empty" : null,
                     ),
                     onChanged: (_val) {
                       details = _val;
@@ -105,11 +112,24 @@ class _CreateASurveyState extends State<CreateASurvey> {
           ),
         ),
         floatingActionButton: FloatingActionButton.extended(
-          onPressed: //add,
-              () async{
-             
+          onPressed: () async {
            
-             
+              setState(() {
+                title.isEmpty ? _validate = true : _validate = false;
+              });
+            
+           
+              setState(() {
+                number.isEmpty ? _validate2 = true : _validate2 = false;
+              });
+         
+           
+              setState(() {
+                details.isEmpty ? _validate3 = true : _validate3 = false;
+              });
+        
+
+            if (!_validate && !_validate2 && !_validate3) {
               final FirebaseAuth auth = FirebaseAuth.instance;
               User? user = auth.currentUser;
               String? uid = user?.uid;
@@ -123,14 +143,15 @@ class _CreateASurveyState extends State<CreateASurvey> {
 
               String img = docSnapshot['img'];
               String nam = docSnapshot['name'];
-            
 
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => SurveyDuration(number, title, details,img,nam),
-              ),
-            );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      SurveyDuration(number, title, details, img, nam),
+                ),
+              );
+            }
           },
           label: const Text(
             "Next",

@@ -15,7 +15,7 @@ class Emailotp extends StatefulWidget {
 class _EmailotpState extends State<Emailotp> {
 
   TextEditingController email = TextEditingController();
-  EmailOTP myauth = EmailOTP();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -43,27 +43,7 @@ class _EmailotpState extends State<Emailotp> {
 
                   suffixIcon: IconButton(
                     onPressed: () async {
-                      myauth.setConfig(
-                          appEmail: "contact@hdevcoder.com",
-                          appName: "Email OTP",
-                          userEmail: email.text,
-                          otpLength: 4,
-                          otpType: OTPType.digitsOnly);
-                      if (await myauth.sendOTP() == true) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text("OTP has been sent"),
-                        ));
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>   OtpScreen(myauth: myauth,)));
-                      } else {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text("Oops, OTP send failed"),
-                        ));
-                      }
+                     
                     },
                     icon: const Icon(
                       Icons.send_rounded,
