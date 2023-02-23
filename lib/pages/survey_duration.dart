@@ -1,21 +1,26 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_new/features/walltet.dart';
 
 import 'package:flutter_new/screens/homeSreen_.dart';
 import 'package:flutter_new/screens/login.dart';
 import 'package:flutter_new/theme.dart';
 import 'dart:core';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:http/http.dart' as http;
+import 'package:uuid/uuid.dart';
+
 import 'dart:convert';
 
 import '../features/participate_sreen.dart';
 
 class SurveyDuration extends StatefulWidget {
-  SurveyDuration(this.number, this.title, this.details,this.img,this.nam, {Key? key})
+  SurveyDuration(this.number, this.title, this.details, this.img, this.nam,
+      {Key? key})
       : super(key: key);
-  dynamic number, title, details,img,nam;
+  dynamic number, title, details, img, nam;
   @override
   State<SurveyDuration> createState() => _SurveyDurationState();
 }
@@ -25,14 +30,16 @@ class _SurveyDurationState extends State<SurveyDuration> {
   DateTime? startDate = DateTime.now();
   DateTime? endDate;
   late String url;
-  Map<String, dynamic>? paymentIntent;
+
 
   // defined category
 
   @override
   Widget build(BuildContext context) {
-    final String SECRET_KEY =
-        "sk_test_51MSg5oIk9gUHQ0TofSMoSHqZgspvFDDxdJpu4MxLGEDo2vG5Vqafm3LCq1UQgwgrC4OSXM8gR2sk9pBe5aHDPR2P00tyQbfuqu";
+    var uuid = Uuid();
+   
+   var cd = uuid.v4();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -65,7 +72,7 @@ class _SurveyDurationState extends State<SurveyDuration> {
                 height: 15,
               ),
 
-              const Text('Start and End ',
+              const Text('End Date',
                   style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'poppins',
@@ -86,7 +93,7 @@ class _SurveyDurationState extends State<SurveyDuration> {
                 height: 10,
               ),
 
-              // end date
+          
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -134,6 +141,43 @@ class _SurveyDurationState extends State<SurveyDuration> {
                 ],
               ),
 
+              const SizedBox(
+                height: 55,
+              ),
+              Text('Go To your Google form In which you\'ve added question and follow: ',
+            
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'poppins',
+                      fontWeight: FontWeight.w600,
+                      color: blackColor)),
+
+            Text(' Settings-> Pressentation -> Confirm msg , in Confirm msg add this unique code',
+            
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'poppins',
+                      fontWeight: FontWeight.w600,
+                      color: blackColor)),
+
+                       Text(cd,
+            
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'poppins',
+                      fontWeight: FontWeight.w600,
+                      color: blackColor)),
+
+                
+                 Text('this is for our tracking purpose',
+            
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'poppins',
+                      fontWeight: FontWeight.w600,
+                      color: blackColor)),
+
+                   
               const SizedBox(
                 height: 55,
               ),
@@ -221,8 +265,123 @@ class _SurveyDurationState extends State<SurveyDuration> {
 
       //next button
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          makePayment();
+        onPressed: () async {
+          final FirebaseAuth auth = FirebaseAuth.instance;
+          User? user = auth.currentUser;
+          String? uid = user?.uid;
+
+          DocumentReference docRef =
+              FirebaseFirestore.instance.collection('uinfo').doc(uid);
+          DocumentSnapshot docSnapshot = await docRef.get();
+
+          //  Object? data = docSnapshot.data();
+          // Do something with the data
+
+          int co = docSnapshot['score'];
+          //int co = int.parse(Coins);
+
+          if (co >= 20) {
+            co -= 20;
+            _uupdate(co);
+            CollectionReference ref = FirebaseFirestore.instance
+                .collection('surveyInfo')
+                .doc(FirebaseAuth.instance.currentUser?.uid)
+                .collection('information');
+
+            CollectionReference reef =
+                FirebaseFirestore.instance.collection('survey');
+
+            var data = {
+              'name': widget.nam,
+              'image': widget.img,
+              'startDate': startDate,
+              'endDate': endDate,
+              'title': widget.title,
+              'details': widget.details,
+              'number': widget.number,
+              'url': url,
+              'unid': cd,
+            };
+            ref.add(data);
+            reef.add(data);
+            showDialog(
+                context: context,
+                builder: (_) => AlertDialog(
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.check_circle,
+                            color: Color.fromRGBO(158, 158, 158, 1),
+                          ),
+                          Text("Survey Created"),
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                //primary: Colors.purple,
+                                backgroundColor: primaryColor,
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomeSreeen(),
+                                  ),
+                                );
+                              },
+                              child: Text("Continue"))
+                        ],
+                      ),
+                    ));
+          } else {
+            showDialog(
+                context: context,
+                builder: (_) => AlertDialog(
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.dangerous,
+                            color: Colors.red,
+                          ),
+                          Text(
+                              "You Do not have sufficiant coins to Create a survey.Do buy or participate in Surveys to earn coins"),
+                          Row(children: [
+                            ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  //primary: Colors.purple,
+                                  backgroundColor: primaryColor,
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Wallet(),
+                                    ),
+                                  );
+                                },
+                                child: Text("Buy Coin")),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  //primary: Colors.purple,
+                                  backgroundColor: primaryColor,
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomeSreeen(),
+                                    ),
+                                  );
+                                },
+                                child: Text("Participate in surveys"))
+                          ])
+                        ],
+                      ),
+                    ));
+          }
         },
         label: const Text(
           "Next",
@@ -251,115 +410,9 @@ class _SurveyDurationState extends State<SurveyDuration> {
   // }
   // selected;
 
-  Future<void> makePayment() async {
-    try {
-      paymentIntent =
-          await createPaymentIntent(widget.number.toString(), "USD");
-      await Stripe.instance.initPaymentSheet(
-          paymentSheetParameters: SetupPaymentSheetParameters(
-              paymentIntentClientSecret: paymentIntent!['client_secret'],
-              style: ThemeMode.dark,
-              merchantDisplayName: "Record Keepers"));
+  Future<void> _uupdate(int co) async {
+    CollectionReference ref = FirebaseFirestore.instance.collection('uinfo');
 
-      displayPaymentSheet();
-    } catch (error, s) {
-      print("Exception found ${error.toString()}");
-    }
-  }
-
-  createPaymentIntent(String amount, String currency) async {
-    final String SECRET_KEY =
-        "sk_test_51MSg5oIk9gUHQ0TofSMoSHqZgspvFDDxdJpu4MxLGEDo2vG5Vqafm3LCq1UQgwgrC4OSXM8gR2sk9pBe5aHDPR2P00tyQbfuqu";
-    try {
-      Map<String, dynamic> body = {
-        'amount': calculateAmount(amount),
-        'currency': currency,
-        'payment_method_types[]': 'card'
-      };
-
-      var response = await http.post(
-        Uri.parse('https://api.stripe.com/v1/payment_intents'),
-        headers: {
-          'Authorization': 'Bearer $SECRET_KEY',
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: body,
-      );
-
-      print(response.body);
-      return jsonDecode(response.body);
-    } catch (error) {
-      print("Error Charging the user ${error.toString()}");
-    }
-  }
-
-  calculateAmount(String amount) {
-    final calculatedAmount = (int.parse(amount)) * 100;
-    return calculatedAmount.toString();
-  }
-
-  displayPaymentSheet() async {
-    try {
-      CollectionReference ref = FirebaseFirestore.instance
-          .collection('surveyInfo')
-          .doc(FirebaseAuth.instance.currentUser?.uid)
-          .collection('information');
-
-      CollectionReference reef =
-          FirebaseFirestore.instance.collection('survey');
-
-      var data = {
-        'name': widget.nam,
-        'image': widget.img,
-        'startDate': startDate,
-        'endDate': endDate,
-        'title': widget.title,
-        'details': widget.details,
-        'number': widget.number,
-        'url': url,
-      };
-      ref.add(data);
-      reef.add(data);
-
-      await Stripe.instance.presentPaymentSheet().then((value) => {
-            showDialog(
-                context: context,
-                builder: (_) => AlertDialog(
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.check_circle,
-                            color: Colors.grey,
-                          ),
-                          Text("Payment Successful"),
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                //primary: Colors.purple,
-                                backgroundColor: primaryColor,
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomeSreeen(),
-                                  ),
-                                );
-                              },
-                              child: Text("Done"))
-                        ],
-                      ),
-                    ))
-          });
-
-      paymentIntent = null;
-    } on StripeException catch (error) {
-      print("Error $error");
-      showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-                content: Text("Cancelled"),
-              ));
-    }
+    await ref.doc(FirebaseAuth.instance.currentUser?.uid).update({"score": co});
   }
 }

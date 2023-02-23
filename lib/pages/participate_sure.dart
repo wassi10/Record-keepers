@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -6,9 +8,10 @@ import 'package:flutter_new/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Sureparticipate extends StatefulWidget {
-  Sureparticipate(this.end,this.endDate, this.title, this.details, this.name, this.url,
+  Sureparticipate(this.id, this.end, this.endDate, this.title, this.details,
+      this.name, this.url,
       {super.key});
-  String details, title, name, endDate, url,end;
+  String details, title, name, endDate, url, end, id;
 
   @override
   State<Sureparticipate> createState() => _SureparticipateState();
@@ -134,43 +137,66 @@ class _SureparticipateState extends State<Sureparticipate> {
             SizedBox(
               height: 15,
             ),
-            DateTime.now().toString().compareTo(widget.end)==-1 ?
-            InkWell(
-              
-                onTap: () async {
-                  if (await canLaunch(widget.url)) {
-                    await launch(widget.url);
-                  } else {
-                    print("Coudnt launch");
-                  }
-                },
-                
-                child: Buttons(buttonText: "Participate in this Survey"))
+            DateTime.now().toString().compareTo(widget.end) == -1
+                ? InkWell(
+                    onTap: () async {
+                      FirebaseFirestore.instance
+                          .collection('MyParticipations')
+                          .doc(FirebaseAuth.instance.currentUser?.uid)
+                          .collection('random')
+                          .where('unid', isEqualTo: widget.id)
+                          .get()
+                          .then((QuerySnapshot value) {
+           if(value.docs.isNotEmpty){
 
-                :InkWell(
-              
-                onTap: () async {
-                 
-                },
-                
-                child: Container(
+           }else{
+             CollectionReference ref = FirebaseFirestore.instance
+                          .collection('MyParticipations')
+                          .doc(FirebaseAuth.instance.currentUser?.uid)
+                          .collection('random');
+                      var data = {
+                        'status': "not done",
+                        'unid': widget.id,
+                        'description': widget.details,
+                        'title': widget.title,
+                      };
+                      ref.add(data);
 
-      alignment: Alignment.center,
 
-      height: MediaQuery.of(context).size.height*0.06,
-      width: double.infinity,
+           }
 
-      //button decoration
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20), color: Colors.grey,
-      ),
+                          });
 
-      //decorate button text
-      child: Text("This Survey is ended",
-      style: textButton.copyWith(color: whiteColor),
-      ),
-    ),
-                )
+                     
+
+                      if (await canLaunch(widget.url)) {
+                        await launch(widget.url);
+                      } else {
+                        print("Coudnt launch");
+                      }
+                    },
+                    child: Buttons(buttonText: "Participate in this Survey"))
+                : InkWell(
+                    onTap: () async {},
+                    child: Container(
+                      alignment: Alignment.center,
+
+                      height: MediaQuery.of(context).size.height * 0.06,
+                      width: double.infinity,
+
+                      //button decoration
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.grey,
+                      ),
+
+                      //decorate button text
+                      child: Text(
+                        "This Survey is ended",
+                        style: textButton.copyWith(color: whiteColor),
+                      ),
+                    ),
+                  )
           ],
         ),
       ),

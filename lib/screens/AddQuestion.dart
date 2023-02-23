@@ -1,17 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../theme.dart';
 
 class AddQuestion extends StatefulWidget {
-  const AddQuestion({Key? key}) : super(key: key);
-
+  AddQuestion(this.number, this.title, this.details, {Key? key})
+      : super(key: key);
+  dynamic number, title, details;
   @override
   State<AddQuestion> createState() => _AddQuestionState();
 }
 
 class _AddQuestionState extends State<AddQuestion> {
   List<bool> isEXpanded = List.filled(10, false);
-
+  late List<String> Question;
   bool valueItem = false;
 
   late String chooseCategory = "-1";
@@ -122,11 +125,16 @@ class _AddQuestionState extends State<AddQuestion> {
                                 height: 10,
                               ),
                               TextFormField(
+                                
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   hintText: 'Type Question',
                                   contentPadding: EdgeInsets.all(10),
                                 ),
+
+                                onChanged: (value) {
+                                  Question[index] = value;
+                                },
                               ),
                               SizedBox(
                                 height: 30,
@@ -217,6 +225,7 @@ class _AddQuestionState extends State<AddQuestion> {
                                                       height: 10,
                                                     ),
                                                     TextFormField(
+                                                      onChanged: (value) {},
                                                       decoration:
                                                           InputDecoration(
                                                         border:
@@ -277,7 +286,33 @@ class _AddQuestionState extends State<AddQuestion> {
         // ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          final FirebaseAuth auth = FirebaseAuth.instance;
+          User? user = auth.currentUser;
+          String? uid = user?.uid;
+          var data = {
+            'tittle': widget.title,
+            'description': widget.details,
+            
+          };
+
+          CollectionReference ref = FirebaseFirestore.instance
+              .collection('Surv')
+              .doc(uid)
+              .collection('SurveyID');
+          ref.add(data).then((valu) {
+            Question.forEach((element) {
+              CollectionReference ref = FirebaseFirestore.instance
+                  .collection('Question')
+                  .doc(valu.id)
+                  .collection('QuestionID');
+              var data = {
+                'Question': element,
+              };
+              ref.add(data);
+            });
+          });
+        },
         label: const Text(
           "Save",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),

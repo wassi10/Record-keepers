@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_new/screens/My_Participations.dart';
 import 'package:flutter_new/screens/_uploadPhoto.dart';
 import 'package:flutter_new/screens/change_pass.dart';
 import 'package:flutter_new/widgets/user.dart';
@@ -202,6 +203,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         color: blackColor,
                                         fontWeight: FontWeight.w500),
                                   ),
+
                                 ),
                                 Icon(
                                   Icons.arrow_forward_ios,
@@ -308,7 +310,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ],
                               )),
+
+                               
                         ),
+                        SizedBox(height: 20,),
+                        Padding(
+                          padding: defaultPadding,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                     color: primaryColor,
+                                     borderRadius: BorderRadius.circular(15)
+                            ),
+                           
+                            height:70,
+                            width: MediaQuery.of(context).size.width,
+                            child:InkWell(
+                                onTap: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Myparticipation()),
+                                    );
+                                },
+                                  
+                               
+                              child: Text("My Participations",
+                                 style: TextStyle(
+                                  color: whiteColor,
+                                  fontSize: 20,
+
+                                 ),
+                                 textAlign: TextAlign.center,
+                              ))
+                          ),
+                        )
+                        
                       ]));
                     } else {
                       return Container(

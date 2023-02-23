@@ -113,7 +113,7 @@ class _ParticipateScreenState extends State<ParticipateScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Sureparticipate(data['endDate'].toDate().toString(),old.toString(),data['title'],data['details'],data['name'],data['url']),
+                                    builder: (context) => Sureparticipate(data['unid'],data['endDate'].toDate().toString(),old.toString(),data['title'],data['details'],data['name'],data['url']),
                                   ),
                                 );
                               },
