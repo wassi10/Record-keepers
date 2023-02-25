@@ -40,7 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
           children: [
             const SizedBox(
-              height: 100,
+              height: 190,
             ),
 
             Padding(
@@ -125,10 +125,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ));
                       }
 
-
-
-
-           
               },
 
               child:  Padding(
@@ -139,62 +135,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
 
             ),
-
-
-
-            const SizedBox(
-              height: 30,
-            ),
-
-            Padding(
-              padding: defaultPadding,
-              child: Row(
-                children: [
-                  Text("Or Sign Up with: ",
-                    style: subTitle.copyWith(color: blackColor),
-                  ),
-
-                ],
-              ),
-            ),
-
-            const SizedBox(
-              height: 30,
-            ),
-
-
-
-            // login from google and facebook
-            Row(
-
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-              children: [
-                //for google logo
-                MaterialButton(
-                    onPressed: (){
-                  signInWithGoogle();
-                },
-                  child:  LogoButtons(
-                    iconImage: const Image(
-                      height: 30,
-                      width: 30,
-                      image: AssetImage('assets/google.png'),
-                    ),
-                    textButtton: ' Google',
-
-                  ),
-
-                ),
-
-
-
-
-
-
-              ],
-            ),
-
 
 
 
@@ -234,49 +174,4 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  //firebaseAuth using google
-  void signInWithGoogle()async {
-    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-    AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken
-    );
-   UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-   print(userCredential.user?.displayName);
-  }
-}
-
-
-//another login option from google and facebook
-class LogoButtons extends StatelessWidget {
-
-  final Image iconImage;
-  final String textButtton;
-
-  LogoButtons({required this.iconImage, required this.textButtton});
-
-  @override
-  Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context).size;
-
-    return Container(
-      height: mediaQuery.height*0.07,
-      width: mediaQuery.width * 0.40,
-
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: blackColor),
-      ),
-
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center, // google logo center e ashar jonno
-        children: [
-          iconImage,
-          const SizedBox(height: 5,),
-          Text(textButtton),
-        ],
-      ),
-    );
-  }
 }
