@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_new/pages/participate_sure.dart';
 import 'package:flutter_new/screens/homeSreen_.dart';
 import '../theme.dart';
 
@@ -28,7 +27,7 @@ class _MyparticipationState extends State<Myparticipation> {
           ),
           elevation: 0,
           backgroundColor: primaryColor,
-       // this is for remove the back button
+          // this is for remove the back button
         ),
         body: Padding(
           padding: defaultPadding,
@@ -40,227 +39,222 @@ class _MyparticipationState extends State<Myparticipation> {
                       itemCount: streamSnapshot.data?.docs.length,
                       itemBuilder: (context, index) {
                         String s1 = "";
-                        DocumentSnapshot data = streamSnapshot.data!.docs[index];
+                        DocumentSnapshot data =
+                            streamSnapshot.data!.docs[index];
                         return Padding(
-                          
                           padding: defaultPadding,
-                          
-                          child:  Column(
-                            children:[
-                          
-                          InkWell(
-                            onTap: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (_) => AlertDialog(
-                                        content: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Text(
-                                                "Enter The unique key you've recieved after participating this survey!"),
-                                            TextFormField(
-                                              decoration: InputDecoration(
-                                                border: OutlineInputBorder(),
-                                                hintText: 'Unique key',
-                                                contentPadding:
-                                                    EdgeInsets.all(10),
-                                              ),
-                                              onChanged: (value) {
-                                                s1 = value;
-                                              },
-                                            ),
-                                            ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                  //primary: Colors.purple,
-                                                  backgroundColor: primaryColor,
+                          child: Column(children: [
+                            GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (_) => AlertDialog(
+                                          content: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(
+                                                  "Enter The unique key you've recieved after participating this survey!"),
+                                              TextFormField(
+                                                decoration: InputDecoration(
+                                                  border: OutlineInputBorder(),
+                                                  hintText: 'Unique key',
+                                                  contentPadding:
+                                                      EdgeInsets.all(10),
                                                 ),
-                                                onPressed: () {
-                                              FirebaseFirestore.instance.collection('Earnings')
-                                                      .doc(FirebaseAuth.instance
-                                                          .currentUser?.uid)
-                                                      .collection('random')
-                                                      .where('unid',
-                                                          isEqualTo: data['unid'])
-                                                      .get()
-                                                      .then(
-                                                          (QuerySnapshot value) {
-                                                    if (value.docs.isNotEmpty) {
-                                                             showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (_) => AlertDialog(
-                                                                  content: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    children: [
-                                                                     
-                                                                      Text(
-                                                                          "You have already earned from this survey!!"),
-                                                                      ElevatedButton(
-                                                                          style: ElevatedButton
-                                                                              .styleFrom(
-                                                                            //primary: Colors.purple,
-                                                                            backgroundColor:
-                                                                                primaryColor,
-                                                                          ),
-                                                                          onPressed:
-                                                                              () {
-                                                                            Navigator
-                                                                                .push(
-                                                                              context,
-                                                                              MaterialPageRoute(
-                                                                                builder: (context) => HomeSreeen(),
-                                                                              ),
-                                                                            );
-                                                                          },
-                                                                          child: Text(
-                                                                              "Okay"))
-                                                                    ],
-                                                                  ),
-                                                                ));
-                                                        }else{
-                                                             if (data['unid'] == s1) {
-                                                    CollectionReference ref =
-                                                        FirebaseFirestore.instance
-                                                            .collection(
-                                                                'Earnings')
-                                                            .doc(FirebaseAuth
-                                                                .instance
-                                                                .currentUser
-                                                                ?.uid)
-                                                            .collection('random');
-                                                    var data = {
-                                                      'unid': s1,
-                                                    };
-                                                    ref.add(data);
-
-                                                    _uupdate(5);
-                                                    showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (_) => AlertDialog(
-                                                                  content: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    children: [
-                                                                      Icon(
-                                                                        Icons
-                                                                            .check_circle,
-                                                                        color: Colors
-                                                                            .grey,
-                                                                      ),
-                                                                      Text(
-                                                                          "You got 5 new coins!"),
-                                                                      ElevatedButton(
-                                                                          style: ElevatedButton
-                                                                              .styleFrom(
-                                                                            //primary: Colors.purple,
-                                                                            backgroundColor:
-                                                                                primaryColor,
-                                                                          ),
-                                                                          onPressed:
-                                                                              () {
-                                                                            Navigator
-                                                                                .push(
-                                                                              context,
-                                                                              MaterialPageRoute(
-                                                                                builder: (context) => HomeSreeen(),
-                                                                              ),
-                                                                            );
-                                                                          },
-                                                                          child: Text(
-                                                                              "Continue"))
-                                                                    ],
-                                                                  ),
-                                                                ));
-                                                  } else {
-                                                    showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (_) => AlertDialog(
-                                                                  content: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    children: [
-                                                                      Icon(
-                                                                        Icons
-                                                                            .dangerous,
-                                                                        color: Colors
-                                                                            .red,
-                                                                      ),
-                                                                      Text(
-                                                                          "Wrong Key!"),
-                                                                      ElevatedButton(
-                                                                          style: ElevatedButton
-                                                                              .styleFrom(
-                                                                            //primary: Colors.purple,
-                                                                            backgroundColor:
-                                                                                primaryColor,
-                                                                          ),
-                                                                          onPressed:
-                                                                              () {
-                                                                            Navigator
-                                                                                .push(
-                                                                              context,
-                                                                              MaterialPageRoute(
-                                                                                builder: (context) => Myparticipation(),
-                                                                              ),
-                                                                            );
-                                                                          },
-                                                                          child: Text(
-                                                                              "Done"))
-                                                                    ],
-                                                                  ),
-                                                                ));
-                                                  }
-
-
-
-
-                                                           
-                                                        }
-                                                  });
-
-                                               
+                                                onChanged: (value) {
+                                                  s1 = value;
                                                 },
-                                                child: Text("Confirm"))
-                                          ],
-                                        ),
-                                      ));
-                            },
-                            
-                            child: Container(
-                              margin: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: primaryColor,
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                height: 60,
-                                width: MediaQuery.of(context).size.width,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Title: ${data['title']}",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                  ],
-                                )),
-                           ),
-                           SizedBox(height: 10,), 
-                           
-                           ]
+                                              ),
+                                              ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    //primary: Colors.purple,
+                                                    backgroundColor:
+                                                        primaryColor,
+                                                  ),
+                                                  onPressed: () {
+                                                    FirebaseFirestore.instance
+                                                        .collection('Earnings')
+                                                        .doc(FirebaseAuth
+                                                            .instance
+                                                            .currentUser
+                                                            ?.uid)
+                                                        .collection('random')
+                                                        .where('unid',
+                                                            isEqualTo:
+                                                                data['unid'])
+                                                        .get()
+                                                        .then((QuerySnapshot
+                                                            value) {
+                                                      if (value
+                                                          .docs.isNotEmpty) {
+                                                        showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (_) =>
+                                                                    AlertDialog(
+                                                                      content:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.min,
+                                                                        children: [
+                                                                          Text(
+                                                                              "You have already earned from this survey!!"),
+                                                                          ElevatedButton(
+                                                                              style: ElevatedButton.styleFrom(
+                                                                                //primary: Colors.purple,
+                                                                                backgroundColor: primaryColor,
+                                                                              ),
+                                                                              onPressed: () {
+                                                                                Navigator.push(
+                                                                                  context,
+                                                                                  MaterialPageRoute(
+                                                                                    builder: (context) => HomeSreeen(),
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                              child: Text("Okay"))
+                                                                        ],
+                                                                      ),
+                                                                    ));
+                                                      } else {
+                                                        if (data['unid'] ==
+                                                            s1) {
+                                                          CollectionReference
+                                                              ref =
+                                                              FirebaseFirestore
+                                                                  .instance
+                                                                  .collection(
+                                                                      'Earnings')
+                                                                  .doc(FirebaseAuth
+                                                                      .instance
+                                                                      .currentUser
+                                                                      ?.uid)
+                                                                  .collection(
+                                                                      'random');
+                                                          var dat = {
+                                                            'unid': s1,
+                                                          };
+                                                          ref.add(dat);
 
-                          ),
+                                                          _uupdate(5);
+                                                          _uuupdate(data['unid'] );
+                                                          showDialog(
+                                                              context: context,
+                                                              builder: (_) =>
+                                                                  AlertDialog(
+                                                                    content:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      children: [
+                                                                        Icon(
+                                                                          Icons
+                                                                              .check_circle,
+                                                                          color:
+                                                                              Colors.grey,
+                                                                        ),
+                                                                        Text(
+                                                                            "You got 5 new coins!"),
+                                                                        ElevatedButton(
+                                                                            style: ElevatedButton
+                                                                                .styleFrom(
+                                                                              //primary: Colors.purple,
+                                                                              backgroundColor: primaryColor,
+                                                                            ),
+                                                                            onPressed:
+                                                                                () {
+                                                                              Navigator.push(
+                                                                                context,
+                                                                                MaterialPageRoute(
+                                                                                  builder: (context) => HomeSreeen(),
+                                                                                ),
+                                                                              );
+                                                                            },
+                                                                            child:
+                                                                                Text("Continue"))
+                                                                      ],
+                                                                    ),
+                                                                  ));
+                                                        } else {
+                                                          showDialog(
+                                                              context: context,
+                                                              builder: (_) =>
+                                                                  AlertDialog(
+                                                                    content:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      children: [
+                                                                        Icon(
+                                                                          Icons
+                                                                              .dangerous,
+                                                                          color:
+                                                                              Colors.red,
+                                                                        ),
+                                                                        Text(
+                                                                            "Wrong Key!"),
+                                                                        ElevatedButton(
+                                                                          style:
+                                                                              ElevatedButton.styleFrom(
+                                                                            //primary: Colors.purple,
+                                                                            backgroundColor:
+                                                                                primaryColor,
+                                                                          ),
+                                                                          onPressed:
+                                                                              () {
+                                                                            Navigator.push(
+                                                                              context,
+                                                                              MaterialPageRoute(
+                                                                                builder: (context) => HomeSreeen(),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                          child:
+                                                                              Text("Done"),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ));
+                                                        }
+                                                      }
+                                                    });
+                                                  },
+                                                  child: Text("Confirm"))
+                                            ],
+                                          ),
+                                        ));
+                              },
+                              child: Container(
+                                  margin: const EdgeInsets.only(top: 30),
+                                  decoration: BoxDecoration(
+                                    color: primaryColor,
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  height: 60,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 12,
+                                      ),
+                                      Text(
+                                        "Title: ${data['title']}",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                            ),
+                            SizedBox(
+                              height: 0,
+                            ),
+                          ]),
                         );
                         SizedBox(
                           height: 10,
@@ -277,5 +271,16 @@ class _MyparticipationState extends State<Myparticipation> {
     CollectionReference ref = FirebaseFirestore.instance.collection('uinfo');
 
     await ref.doc(FirebaseAuth.instance.currentUser?.uid).update({"score": co});
+  }
+
+  Future<void> _uuupdate(String unid) async {
+    CollectionReference ref = FirebaseFirestore.instance.collection('survey');
+    QuerySnapshot querySnapshot =
+        await ref.where('unid', isEqualTo: unid).get();
+    QueryDocumentSnapshot<Object?> docomentSnapshot = querySnapshot.docs.first;
+    int cnt = docomentSnapshot.get('cnt');
+    cnt++;
+    String documentId = querySnapshot.docs.first.id;
+    await ref.doc(documentId).update({"cnt": cnt});
   }
 }

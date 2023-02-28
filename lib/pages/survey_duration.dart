@@ -298,9 +298,10 @@ class _SurveyDurationState extends State<SurveyDuration> {
               'endDate': endDate,
               'title': widget.title,
               'details': widget.details,
-              'number': widget.number,
+              'number': int.parse(widget.number),
               'url': url,
               'unid': cd,
+              'cnt': 0,
             };
             ref.add(data);
             reef.add(data);

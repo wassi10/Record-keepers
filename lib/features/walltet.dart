@@ -17,9 +17,7 @@ class Wallet extends StatefulWidget {
 }
 
 String s1 = "";
-final FirebaseAuth auth = FirebaseAuth.instance;
-    late User? user = auth.currentUser;
-    late String? uid = user?.uid;
+
 
 class _WalletState extends State<Wallet> {
   Map<String, dynamic>? paymentIntent;
@@ -50,6 +48,9 @@ class _WalletState extends State<Wallet> {
                 return ListView.builder(
                     itemCount: streamSnapshot.data?.docs.length,
                     itemBuilder: (context, index) {
+                      final FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+   String? uid = user?.uid;
                       DocumentSnapshot data = streamSnapshot.data!.docs[index];
                       if (data.id == uid) {
                         return Padding(
@@ -224,6 +225,9 @@ class _WalletState extends State<Wallet> {
   }
 
   displayPaymentSheet() async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+   String? uid = user?.uid;
       DocumentReference docRef = FirebaseFirestore.instance.collection('uinfo').doc(uid);
           DocumentSnapshot docSnapshot = await docRef.get();
 

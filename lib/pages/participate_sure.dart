@@ -9,9 +9,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Sureparticipate extends StatefulWidget {
   Sureparticipate(this.id, this.end, this.endDate, this.title, this.details,
-      this.name, this.url,
+      this.name, this.url,this.number,this.cnt,
       {super.key});
   String details, title, name, endDate, url, end, id;
+  dynamic number,cnt;
 
   @override
   State<Sureparticipate> createState() => _SureparticipateState();
@@ -137,7 +138,7 @@ class _SureparticipateState extends State<Sureparticipate> {
             SizedBox(
               height: 15,
             ),
-            DateTime.now().toString().compareTo(widget.end) == -1
+          (( DateTime.now().toString().compareTo(widget.end) == -1)   && (widget.number >  widget.cnt) )
                 ? InkWell(
                     onTap: () async {
                       FirebaseFirestore.instance

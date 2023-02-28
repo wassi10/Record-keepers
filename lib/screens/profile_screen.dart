@@ -168,6 +168,54 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 50,
                         ),
 
+
+                            Padding(
+                              padding: defaultPadding,
+                              child: MaterialButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Myparticipation(),
+                                      ),
+                                    );
+                                  },
+                                  padding: EdgeInsets.all(15),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  color: Colors.white70,
+                                  child: Row(
+                                    children: const [
+                                      Icon(
+                                        Icons.note_alt_outlined,
+                                        color: primaryColor,
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          'Confirm Participation',
+                                          style: TextStyle(
+                                              fontFamily: 'poppins',
+                                              fontSize: 18,
+                                              color: blackColor,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
+                                      Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: primaryColor,
+                                      ),
+                                    ],
+                                  )),
+
+
+                            ),
+
+                        SizedBox(height: 10,),
+
                         //change password
                         Padding(
                           padding: defaultPadding,
@@ -314,37 +362,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                
                         ),
                         SizedBox(height: 20,),
-                        Padding(
-                          padding: defaultPadding,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                     color: primaryColor,
-                                     borderRadius: BorderRadius.circular(15)
-                            ),
-                           
-                            height:70,
-                            width: MediaQuery.of(context).size.width,
-                            child:InkWell(
-                                onTap: (){
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Myparticipation()),
-                                    );
-                                },
-                                  
-                               
-                              child: Text("My Participations",
-                                 style: TextStyle(
-                                  color: whiteColor,
-                                  fontSize: 20,
 
-                                 ),
-                                 textAlign: TextAlign.center,
-                              ))
-                          ),
-                        )
-                        
                       ]));
                     } else {
                       return Container(
