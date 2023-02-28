@@ -165,8 +165,8 @@ class _SurveyDurationState extends State<SurveyDuration> {
                   style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'poppins',
-                      fontWeight: FontWeight.w600,
-                      color: blackColor)),
+                      fontWeight: FontWeight.w700,
+                      color: Colors.green)),
 
                 
                  Text('this is for our tracking purpose',

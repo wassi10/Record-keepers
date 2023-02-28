@@ -21,7 +21,7 @@ class _MyparticipationState extends State<Myparticipation> {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Home',
+            'My Participation',
             style: TextStyle(
                 fontSize: 22, color: whiteColor, fontWeight: FontWeight.w700),
           ),

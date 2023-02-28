@@ -26,13 +26,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
         title: const Text('Create a survey', style: TextStyle(color: whiteColor), ),
 
         automaticallyImplyLeading: false, // this is for remove the back button
-        actions: <Widget>[
-          IconButton(
-              onPressed: (){},
-            icon: const Icon(Icons.notifications_none_rounded), color: whiteColor,
 
-          ),
-        ],
       ),
 
 
@@ -72,28 +66,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
             ),
             ),
 
-            const SizedBox(
-              height: 70,
-            ),
 
-
-            //My data button
-            Padding(
-              padding: defaultPadding,
-              child: Row(
-                children: [
-
-                  MaterialButton(
-                    onPressed: (){
-
-                    },
-                    child: Text(
-                        "My Data", style: textButton),
-                  ),
-                ],
-
-              ),
-            ),
 
           ],
 

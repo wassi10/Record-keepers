@@ -12,6 +12,7 @@ class Otp extends StatelessWidget {
     Key? key,
     required this.otpController,
   }) : super(key: key);
+
   final TextEditingController otpController; 
 
   @override
