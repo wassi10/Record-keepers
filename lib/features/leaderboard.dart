@@ -19,7 +19,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
     final moodStream = FirebaseFirestore.instance
         .collection('uinfo')
         .orderBy('score', descending: true)
-        .snapshots();
+        .snapshots(); // score= number of coin
     final activityStream = FirebaseFirestore.instance
         .collection('uinfo')
         .orderBy('score', descending: true)
@@ -94,22 +94,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceAround,
                                           children: [
-                                            // Column(
-                                            //   children: [
-                                            //     // Text(
-                                            //     //   "45",
-                                            //     //   style: TextStyle(
-                                            //     //       fontSize: 42,
-                                            //     //       fontWeight: FontWeight.w300,
-                                            //     //       color: Colors.white.withOpacity(0.9)),
-                                            //     // ),
-                                            //     const Text("Level",
-                                            //         style: TextStyle(
-                                            //             fontSize: 25,
-                                            //             fontWeight: FontWeight.bold,
-                                            //             color: Colors.white)),
-                                            //   ],
-                                            // ),
                                             Column(
                                               children: [
                                                 Text("#${index+1}",

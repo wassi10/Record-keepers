@@ -30,10 +30,12 @@ class _SureparticipateState extends State<Sureparticipate> {
         ),
         elevation: 0,
         backgroundColor: primaryColor,
-        // this is for remove the back button
+
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(20),
+        child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -46,13 +48,14 @@ class _SureparticipateState extends State<Sureparticipate> {
               minWidth: MediaQuery.of(context).size.width,
               height: 80,
               color: Colors.white70,
+
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Wrap(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5),
+                      const Padding(
+                        padding: EdgeInsets.all(5),
                         child: Text("Author:  ",
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
@@ -63,18 +66,18 @@ class _SureparticipateState extends State<Sureparticipate> {
                         padding: const EdgeInsets.all(5),
                         child: Text(
                           widget.name,
-                          style: TextStyle(fontSize: 20),
+                          style: const TextStyle(fontSize: 20),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Wrap(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5),
+                      const Padding(
+                        padding: EdgeInsets.all(5),
                         child: Text("Title:  ",
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
@@ -84,17 +87,17 @@ class _SureparticipateState extends State<Sureparticipate> {
                       Padding(
                         padding: const EdgeInsets.all(5),
                         child:
-                            Text(widget.title, style: TextStyle(fontSize: 20)),
+                            Text(widget.title, style: const TextStyle(fontSize: 20)),
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Wrap(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5),
+                      const Padding(
+                        padding: EdgeInsets.all(5),
                         child: Text("Details:  ",
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
@@ -105,18 +108,18 @@ class _SureparticipateState extends State<Sureparticipate> {
                         padding: const EdgeInsets.all(5),
                         child: Text(
                           widget.details,
-                          style: TextStyle(fontSize: 20),
+                          style: const TextStyle(fontSize: 20),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Wrap(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5),
+                      const Padding(
+                        padding: EdgeInsets.all(5),
                         child: Text("End-Date of Participation:  ",
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
@@ -127,15 +130,16 @@ class _SureparticipateState extends State<Sureparticipate> {
                         padding: const EdgeInsets.all(5),
                         child: Text(
                           widget.end,
-                          style: TextStyle(fontSize: 20),
+                          style: const TextStyle(fontSize: 20),
                         ),
                       ),
                     ],
                   ),
                 ],
               ),
+
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
           (( DateTime.now().toString().compareTo(widget.end) == -1)   && (widget.number >  widget.cnt) )
@@ -200,6 +204,7 @@ class _SureparticipateState extends State<Sureparticipate> {
                   )
           ],
         ),
+      ),
       ),
     );
   }

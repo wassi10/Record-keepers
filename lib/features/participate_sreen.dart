@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_new/pages/participate_sure.dart';
+import 'package:flutter_new/features/participate_sure.dart';
 import '../theme.dart';
 
 class ParticipateScreen extends StatefulWidget {
@@ -13,10 +13,13 @@ class ParticipateScreen extends StatefulWidget {
 class _ParticipateScreenState extends State<ParticipateScreen> {
   @override
   Widget build(BuildContext context) {
+
     Query<Map<String, dynamic>> ref = FirebaseFirestore.instance
         .collection('survey')
         .orderBy('startDate',descending: true);
+
     final now = DateTime.now();
+
     return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -29,6 +32,7 @@ class _ParticipateScreenState extends State<ParticipateScreen> {
           automaticallyImplyLeading:
               false, // this is for remove the back button
         ),
+
         body: StreamBuilder(
             stream: ref.snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
@@ -51,10 +55,10 @@ class _ParticipateScreenState extends State<ParticipateScreen> {
       time = 'just now';
     }
 
-                      // DateTime? dat = datt.toDate();
 
                       return Padding(
                         padding: const EdgeInsets.all(20),
+
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -108,7 +112,7 @@ class _ParticipateScreenState extends State<ParticipateScreen> {
                               color: Colors.white70,
                             ),
                             SizedBox(height: 10),
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                   context,

@@ -26,13 +26,13 @@ class SurveyDuration extends StatefulWidget {
 }
 
 class _SurveyDurationState extends State<SurveyDuration> {
+
   late String chooseCategory = "-1";
   DateTime? startDate = DateTime.now();
   DateTime? endDate;
   late String url;
 
 
-  // defined category
 
   @override
   Widget build(BuildContext context) {
@@ -198,66 +198,14 @@ class _SurveyDurationState extends State<SurveyDuration> {
                   hintText: "Paste url...",
                   border: OutlineInputBorder(),
                   contentPadding: EdgeInsets.all(10),
+
                 ),
                 onChanged: (_val) {
                   url = _val;
                 },
               ),
 
-              /*Card(
-                color: Colors.white54,
-                child: DropdownButtonFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                  value: chooseCategory,
-                  items: const [
-                    DropdownMenuItem(
-                      child: Text("  Select Category"),
-                      value: "-1",
-                    ),
-                    DropdownMenuItem(
-                      child: Text("  Blockchain"),
-                      value: "1",
-                    ),
-                    DropdownMenuItem(
-                      child: Text("  Entertainment"),
-                      value: "2",
-                    ),
-                    DropdownMenuItem(
-                      child: Text("  Health"),
-                      value: "3",
-                    ),
-                    DropdownMenuItem(
-                      child: Text("  Politics"),
-                      value: "4",
-                    ),
-                    DropdownMenuItem(
-                      child: Text("  Economy"),
-                      value: "5",
-                    ),
-                    DropdownMenuItem(
-                      child: Text("  Religion"),
-                      value: "6",
-                    ),
-                    DropdownMenuItem(
-                      child: Text("  Business"),
-                      value: "7",
-                    ),
-                    DropdownMenuItem(
-                      child: Text("  Education"),
-                      value: "8",
-                    ),
-                    DropdownMenuItem(
-                      child: Text("  Society"),
-                      value: "9",
-                    ),
-                  ],
-                  onChanged: (v) {},
-                ),
-              ), */
+
             ],
           ),
         ),
